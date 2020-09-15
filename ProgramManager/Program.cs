@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ProgramManager.Managers;
+using System;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ProgramManager
@@ -16,6 +14,7 @@ namespace ProgramManager
         static void Main()
         {
             string pName = "ProgramManager";
+            string configFile = "Config.ini";
 
             Process[] arrProcess = Process.GetProcessesByName(pName);
             if (arrProcess.Length > 1)
@@ -24,9 +23,24 @@ namespace ProgramManager
                 return;
             }
 
+            FileManager.FileName = $"{Environment.CurrentDirectory}\\{configFile}";
+
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomain_UnhandledException;
+            Application.ThreadException += Application_ThreadException;
+
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            Application.Run(new LoginForm());
+        }
+
+        private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
+        {
+            MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private static void CurrentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            MessageBox.Show(e.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }
