@@ -28,14 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.uiBtn_Enter = new System.Windows.Forms.Button();
             this.uiBtn_Close = new System.Windows.Forms.Button();
             this.uiPnl_Main = new System.Windows.Forms.Panel();
             this.uiTxt_PWD = new System.Windows.Forms.TextBox();
             this.uiTxt_ID = new System.Windows.Forms.TextBox();
             this.uiBtn_Login = new System.Windows.Forms.Panel();
-            this.uiBtn_Enter = new System.Windows.Forms.Button();
             this.uiPnl_Main.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // uiBtn_Enter
+            // 
+            this.uiBtn_Enter.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.uiBtn_Enter.Location = new System.Drawing.Point(383, 64);
+            this.uiBtn_Enter.Name = "uiBtn_Enter";
+            this.uiBtn_Enter.Size = new System.Drawing.Size(75, 23);
+            this.uiBtn_Enter.TabIndex = 10;
+            this.uiBtn_Enter.Text = "Enter";
+            this.uiBtn_Enter.UseVisualStyleBackColor = true;
             // 
             // uiBtn_Close
             // 
@@ -76,6 +86,7 @@
             this.uiTxt_PWD.PasswordChar = '*';
             this.uiTxt_PWD.Size = new System.Drawing.Size(276, 19);
             this.uiTxt_PWD.TabIndex = 7;
+            this.uiTxt_PWD.Text = "1234";
             // 
             // uiTxt_ID
             // 
@@ -88,6 +99,7 @@
             this.uiTxt_ID.Name = "uiTxt_ID";
             this.uiTxt_ID.Size = new System.Drawing.Size(276, 19);
             this.uiTxt_ID.TabIndex = 6;
+            this.uiTxt_ID.Text = "PSK";
             // 
             // uiBtn_Login
             // 
@@ -101,16 +113,6 @@
             this.uiBtn_Login.Name = "uiBtn_Login";
             this.uiBtn_Login.Size = new System.Drawing.Size(316, 53);
             this.uiBtn_Login.TabIndex = 8;
-            // 
-            // uiBtn_Enter
-            // 
-            this.uiBtn_Enter.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.uiBtn_Enter.Location = new System.Drawing.Point(383, 64);
-            this.uiBtn_Enter.Name = "uiBtn_Enter";
-            this.uiBtn_Enter.Size = new System.Drawing.Size(75, 23);
-            this.uiBtn_Enter.TabIndex = 10;
-            this.uiBtn_Enter.Text = "Enter";
-            this.uiBtn_Enter.UseVisualStyleBackColor = true;
             // 
             // LoginForm
             // 

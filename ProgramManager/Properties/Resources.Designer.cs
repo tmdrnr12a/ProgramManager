@@ -73,6 +73,16 @@ namespace ProgramManager.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap CloseButtonClick2 {
+            get {
+                object obj = ResourceManager.GetObject("CloseButtonClick2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap CloseButtonDefault {
             get {
                 object obj = ResourceManager.GetObject("CloseButtonDefault", resourceCulture);
@@ -156,6 +166,16 @@ namespace ProgramManager.Properties {
         internal static System.Drawing.Bitmap MinimizationButtonFocus {
             get {
                 object obj = ResourceManager.GetObject("MinimizationButtonFocus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap RedPoint {
+            get {
+                object obj = ResourceManager.GetObject("RedPoint", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

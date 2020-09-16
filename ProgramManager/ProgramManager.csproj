@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Etc\Version.cs" />
     <Compile Include="Forms\ChangePasswordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\MySql.Data.dll" />
+    <None Include="Resources\RedPoint.png" />
+    <None Include="Resources\CloseButtonClick2.jpg" />
     <None Include="Resources\CloseButtonClick.jpg" />
     <None Include="Resources\CloseButtonFocus.jpg" />
     <None Include="Resources\MinimizationButtonDefault.jpg" />
