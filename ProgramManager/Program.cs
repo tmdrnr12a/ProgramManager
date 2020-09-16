@@ -31,6 +31,9 @@ namespace ProgramManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
+
+            MainForm frm = new MainForm();
+            frm.ShowDialog();
         }
 
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

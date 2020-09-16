@@ -63,6 +63,36 @@ namespace ProgramManager.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap CloseButtonClick {
+            get {
+                object obj = ResourceManager.GetObject("CloseButtonClick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap CloseButtonDefault {
+            get {
+                object obj = ResourceManager.GetObject("CloseButtonDefault", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap CloseButtonFocus {
+            get {
+                object obj = ResourceManager.GetObject("CloseButtonFocus", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap LoginButtonClick {
             get {
                 object obj = ResourceManager.GetObject("LoginButtonClick", resourceCulture);
@@ -96,6 +126,36 @@ namespace ProgramManager.Properties {
         internal static System.Drawing.Bitmap LoginForm {
             get {
                 object obj = ResourceManager.GetObject("LoginForm", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap MinimizationButtonClick {
+            get {
+                object obj = ResourceManager.GetObject("MinimizationButtonClick", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap MinimizationButtonDefault {
+            get {
+                object obj = ResourceManager.GetObject("MinimizationButtonDefault", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap MinimizationButtonFocus {
+            get {
+                object obj = ResourceManager.GetObject("MinimizationButtonFocus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

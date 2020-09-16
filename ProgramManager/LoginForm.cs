@@ -28,6 +28,7 @@ namespace ProgramManager
             uiBtn_Login.MouseDown += UiBtn_Login_MouseDown;
             uiBtn_Login.MouseUp += UiBtn_Login_MouseUp;
 
+            uiBtn_Enter.Click += UiBtn_Enter_Click;
             uiBtn_Close.Click += UiBtn_Close_Click;
         }
 
@@ -76,7 +77,7 @@ namespace ProgramManager
         private void SetFocus()
         {
             uiTxt_ID.Focus();
-            uiTxt_PWD.Select();
+            uiTxt_ID.Select();
         }
 
         private bool CheckUserInfo(string id, string pwd)
@@ -135,10 +136,12 @@ namespace ProgramManager
                 return;
 
             if (DatabaseProcessor.Instance.Login(id, pwd) == true)
-            {
-                MainForm frm = new MainForm();
-                frm.ShowDialog();
-            }
+                this.Close();
+        }
+
+        private void UiBtn_Enter_Click(object sender, EventArgs e)
+        {
+            UiBtn_Login_Click(uiBtn_Login, null);
         }
 
         private void UiBtn_Close_Click(object sender, EventArgs e)

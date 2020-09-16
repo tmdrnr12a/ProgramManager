@@ -147,6 +147,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\MySql.Data.dll" />
+    <None Include="Resources\CloseButtonClick.jpg" />
+    <None Include="Resources\CloseButtonFocus.jpg" />
+    <None Include="Resources\MinimizationButtonDefault.jpg" />
+    <None Include="Resources\MinimizationButtonFocus.jpg" />
+    <None Include="Resources\MinimizationButtonClick.jpg" />
+    <None Include="Resources\CloseButtonDefault.jpg" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
