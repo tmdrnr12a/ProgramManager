@@ -12,8 +12,8 @@ namespace ProgramManager.Models
         public static string SEQ = string.Empty;
         public static string ID = string.Empty;
         public static string PWD = string.Empty;
-        public static string TYPE = string.Empty;
         public static string NAME = string.Empty;
+        public static string TYPE = string.Empty;
         public static string DEPT = string.Empty;
         public static string PROGRAM = string.Empty;
     }

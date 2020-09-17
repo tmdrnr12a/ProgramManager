@@ -62,7 +62,6 @@
             // 
             this.uiPnl_Main.BackgroundImage = global::ProgramManager.Properties.Resources.LoginForm;
             this.uiPnl_Main.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uiPnl_Main.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.uiPnl_Main.Controls.Add(this.uiBtn_Enter);
             this.uiPnl_Main.Controls.Add(this.uiTxt_PWD);
             this.uiPnl_Main.Controls.Add(this.uiTxt_ID);
@@ -84,7 +83,7 @@
             this.uiTxt_PWD.Location = new System.Drawing.Point(39, 226);
             this.uiTxt_PWD.Name = "uiTxt_PWD";
             this.uiTxt_PWD.PasswordChar = '*';
-            this.uiTxt_PWD.Size = new System.Drawing.Size(276, 19);
+            this.uiTxt_PWD.Size = new System.Drawing.Size(280, 19);
             this.uiTxt_PWD.TabIndex = 7;
             this.uiTxt_PWD.Text = "1234";
             // 
@@ -97,7 +96,7 @@
             this.uiTxt_ID.Font = new System.Drawing.Font("굴림", 12F);
             this.uiTxt_ID.Location = new System.Drawing.Point(39, 153);
             this.uiTxt_ID.Name = "uiTxt_ID";
-            this.uiTxt_ID.Size = new System.Drawing.Size(276, 19);
+            this.uiTxt_ID.Size = new System.Drawing.Size(280, 19);
             this.uiTxt_ID.TabIndex = 6;
             this.uiTxt_ID.Text = "PSK";
             // 
@@ -111,7 +110,7 @@
             this.uiBtn_Login.Cursor = System.Windows.Forms.Cursors.Hand;
             this.uiBtn_Login.Location = new System.Drawing.Point(21, 268);
             this.uiBtn_Login.Name = "uiBtn_Login";
-            this.uiBtn_Login.Size = new System.Drawing.Size(316, 53);
+            this.uiBtn_Login.Size = new System.Drawing.Size(320, 57);
             this.uiBtn_Login.TabIndex = 8;
             // 
             // LoginForm

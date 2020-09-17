@@ -50,6 +50,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ImageButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Etc\Version.cs" />
     <Compile Include="Forms\ChangePasswordForm.cs">
       <SubType>Form</SubType>
@@ -69,11 +72,11 @@
     <Compile Include="Forms\ProgramForm.Designer.cs">
       <DependentUpon>ProgramForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ProgrmaHistoryForm.cs">
+    <Compile Include="Forms\ProgramHistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ProgrmaHistoryForm.Designer.cs">
-      <DependentUpon>ProgrmaHistoryForm.cs</DependentUpon>
+    <Compile Include="Forms\ProgramHistoryForm.Designer.cs">
+      <DependentUpon>ProgramHistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\UserManagementForm.cs">
       <SubType>Form</SubType>
@@ -96,6 +99,7 @@
     <Compile Include="Managers\FileManager.cs" />
     <Compile Include="Managers\FTPManager.cs" />
     <Compile Include="Managers\MysqlManager.cs" />
+    <Compile Include="Models\ProgramData.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Processor\DatabaseProcessor.cs" />
     <Compile Include="Processor\ParsingProcessor.cs" />

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace ProgramManager.Forms
 {
-    public partial class ProgrmaHistoryForm : Form
+    public partial class ProgramHistoryForm : Form
     {
-        public ProgrmaHistoryForm()
+        public ProgramHistoryForm()
         {
             InitializeComponent();
         }

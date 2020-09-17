@@ -1,6 +1,6 @@
 ﻿namespace ProgramManager.Forms
 {
-    partial class ProgrmaHistoryForm
+    partial class ProgramHistoryForm
     {
         /// <summary>
         /// Required designer variable.

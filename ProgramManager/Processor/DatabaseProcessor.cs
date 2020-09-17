@@ -1,7 +1,11 @@
 ﻿using ProgramManager.Etc;
 using ProgramManager.Manager;
 using ProgramManager.Models;
+using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace ProgramManager.Processor
@@ -32,7 +36,16 @@ AND USER_PWD = '#USER_PWD'
             query = query.Replace("#USER_PWD", pwd);
 
             DataSet ds = new DataSet();
-            MysqlManager.Instance.ExecuteDsQuery(ds, query);
+
+            try
+            {
+                MysqlManager.Instance.ExecuteDsQuery(ds, query);
+            }
+            catch (Exception ex)
+            {
+                ds = null;
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
             if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
             {
@@ -51,6 +64,64 @@ AND USER_PWD = '#USER_PWD'
             }
 
             return result;
+        }
+
+        public List<ProgramData> GetProgramData()
+        {
+            List<ProgramData> pList = new List<ProgramData>();
+
+            string query =
+@"
+SELECT PR_ID, PR_NAME, PR_ICON, PR_PATH, PR_FILE
+FROM PSK_DB.PM_PROGRAM_INFO
+WHERE 1=1
+--PRID AND PR_ID IN (#PRID)
+ORDER BY PR_NAME ASC
+";
+            if (User.PROGRAM != "ALL")
+            {
+                query = query.Replace("--PRID ", "");
+                query = query.Replace("#PRID", $"'{User.PROGRAM.Replace(",", "','")}'");
+            }
+
+            DataSet ds = new DataSet();
+
+            try
+            {
+                MysqlManager.Instance.ExecuteDsQuery(ds, query);
+            }
+            catch (Exception ex)
+            {
+                ds = null;
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                for (int i = 0; i < ds.Tables[0].Rows.Count; i++)
+                {
+                    ProgramData pd = new ProgramData
+                    {
+                        PR_ID = ds.Tables[0].Rows[i]["PR_ID"].ToString(),
+                        PR_NAME = ds.Tables[0].Rows[i]["PR_NAME"].ToString(),
+                        PR_PATH = ds.Tables[0].Rows[i]["PR_PATH"].ToString(),
+                        PR_FILE = ds.Tables[0].Rows[i]["PR_FILE"].ToString()
+                    };
+
+                    try
+                    {
+                        pd.PR_ICON = Image.FromStream(new MemoryStream((byte[])ds.Tables[0].Rows[i]["PR_ICON"]));
+                    }
+                    catch
+                    {
+                        pd.PR_ICON = null;
+                    }
+
+                    pList.Add(pd);
+                }
+            }
+
+            return pList;
         }
     }
 }

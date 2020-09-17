@@ -175,8 +175,7 @@ namespace ProgramManager.Manager
         /// <returns></returns>
         private MySqlDataReader ExecuteReader(string query)
         {
-            MySqlDataReader result = null;
-
+            MySqlDataReader result;
             try
             {
                 MySqlCommand cmd = new MySqlCommand
