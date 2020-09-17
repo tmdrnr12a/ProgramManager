@@ -260,6 +260,7 @@ namespace ProgramManager
             ProgramForm frm = new ProgramForm();
             frm.ShowDialog();
         }
+
         private void UiBtn_UserManagement_Click(object sender, EventArgs e)
         {
             UserManagementForm frm = new UserManagementForm();
@@ -271,7 +272,6 @@ namespace ProgramManager
             ConfigForm frm = new ConfigForm();
             frm.ShowDialog();
         }
-
 
         private void UiBtn_History_Click(object sender, EventArgs e)
         {

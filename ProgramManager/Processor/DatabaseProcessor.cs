@@ -123,5 +123,44 @@ ORDER BY PR_NAME ASC
 
             return pList;
         }
+
+        public bool UpdatePassword(string pwd, string id)
+        {
+            bool result = false;
+
+            string query =
+@"
+UPDATE PSK_DB.PM_USER_INFO
+SET
+    USER_PWD = '#USER_PWD'
+WHERE 1=1
+AND USER_ID = '#USER_ID'
+";
+            query = query.Replace("#USER_PWD", pwd);
+            query = query.Replace("#USER_ID", id);
+
+            try
+            {
+                int row = MysqlManager.Instance.ExecuteNonQuery(query);
+                if (row == 1)
+                {
+                    result = true;
+
+                    User.PWD = pwd;
+                    MessageBox.Show("Change complete.", "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    result = false;
+                    MessageBox.Show("Failed to change password", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return result;
+        }
     }
 }
