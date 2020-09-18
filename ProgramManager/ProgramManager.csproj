@@ -155,6 +155,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="References\MySql.Data.dll" />
+    <Content Include="Resources\NotFoundImage.jpg" />
     <None Include="Resources\RedPoint.png" />
     <None Include="Resources\CloseButtonClick2.jpg" />
     <None Include="Resources\CloseButtonClick.jpg" />

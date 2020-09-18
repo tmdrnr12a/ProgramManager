@@ -5,7 +5,9 @@ using ProgramManager.Processor;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Drawing;
+using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -15,11 +17,13 @@ namespace ProgramManager
     {
         #region " Variables "
 
-        private List<ProgramData> pList = new List<ProgramData>();
+        private List<ProgramData> _ProgramList = null;
 
-        private BackgroundWorker mainWorker = new BackgroundWorker();
+        private BackgroundWorker _MainWorker = null;
 
-        private Point mCurrentPosition = new Point(0, 0);
+        private Thread _MainThread = null;
+
+        private Point _CurrentPosition = new Point(0, 0);
 
 
         #endregion " Variables End "
@@ -30,10 +34,12 @@ namespace ProgramManager
         {
             InitializeComponent();
 
+            InitVariables();
+
             this.Shown += MainForm_Shown;
 
-            this.mainWorker.DoWork += MainWorker_DoWork;
-            this.mainWorker.RunWorkerCompleted += MainWorker_RunWorkerCompleted;
+            _MainWorker.DoWork += MainWorker_DoWork;
+            _MainWorker.RunWorkerCompleted += MainWorker_RunWorkerCompleted;
 
             uiPnl_Title.MouseDown += UiPnl_Title_MouseDown;
             uiPnl_Title.MouseMove += UiPnl_Title_MouseMove;
@@ -52,20 +58,25 @@ namespace ProgramManager
         {
             InitForm();
 
-            this.mainWorker.RunWorkerAsync();
+            _MainWorker.RunWorkerAsync();
         }
 
         #endregion " Create & Load Shown End "
 
         #region "  Methods "
 
+        private void InitVariables()
+        {
+            _ProgramList = new List<ProgramData>();
+            _MainWorker = new BackgroundWorker();
+            _MainThread = new Thread(new ThreadStart(RefreshForm));
+        }
+
         private void InitForm()
         {
             SetVersion();
             SetUserInfo();
             SetButtonDesign();
-
-            InitAppInfo();
         }
 
         private void SetVersion()
@@ -109,16 +120,7 @@ namespace ProgramManager
             //uiBtn_Config.IMAGE_CLICK = Properties.Resources;
         }
 
-        private void InitAppInfo()
-        {
-            uiLab_AppName.Text = string.Empty;
-            uiLab_AppCurVersion.Text = string.Empty;
-            uiLab_AppNewVersion.Text = string.Empty;
 
-            uiRtb_Description.Text = string.Empty;
-
-            uiBtn_History.Enabled = false;
-        }
 
         private bool ConnectToFTP()
         {
@@ -140,39 +142,129 @@ namespace ProgramManager
             return result;
         }
 
-        public void RefreshForm()
+        private void RefreshForm()
         {
-            SetProgramDataList();
-
-            SetListViewData();
-
             InitAppInfo();
 
             ClearListView();
 
+            SetProgramDataList();
+
+            SetListViewData();
+
             UpdateUI();
+        }
+
+        private void InitAppInfo()
+        {
+            uiTlp_App.Invoke(new MethodInvoker(delegate ()
+            {
+                uiLab_AppName.Text = string.Empty;
+                uiLab_AppCurVersion.Text = string.Empty;
+                uiLab_AppNewVersion.Text = string.Empty;
+
+                uiBtn_History.Enabled = false;
+
+                uiRtb_Description.Text = string.Empty;
+            }));
+        }
+        private void ClearListView()
+        {
+            uiLv_Install.Clear();
+            uiLv_Update.Clear();
+            uiLv_Download.Clear();
+
+            uiImageList_Install.Images.Clear();
+            uiImageList_Update.Images.Clear();
+            uiImageList_Download.Images.Clear();
         }
 
         private void SetProgramDataList()
         {
-            this.pList = DatabaseProcessor.Instance.GetProgramData();
+            _ProgramList = DatabaseProcessor.Instance.GetProgramData();
         }
 
         private void SetListViewData()
         {
-            SetInstallData();
-            SetUpdateData();
+            string localPath = FileManager.GetValueString("LOCAL", "DOWNLOAD_PATH", "");
+            
+            string ip = FileManager.GetValueString("FTP", "IP", "");
+            string port = FileManager.GetValueString("FTP", "PORT", "");
+            string tmpPath = FileManager.GetValueString("FTP", "PATH", "");
+            tmpPath = tmpPath.Replace("{0}", ip);
+            tmpPath = tmpPath.Replace("{1}", port);
+            string ftpPath = tmpPath;
+
+            SetInstallData(localPath);
+            SetUpdateData(localPath, ftpPath);
             SetDownloadData();
         }
 
-        private void SetInstallData()
+        private void SetInstallData(string localPath)
         {
+            if (localPath == string.Empty)
+            {
+                MessageBox.Show("LocalPath does not exist.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            if (Directory.Exists(localPath) == false)
+            {
+                Directory.CreateDirectory(localPath);
+                return;
+            }
+                
+            string[] installPrograms = Directory.GetDirectories(localPath);
+
+            if (installPrograms.Length == 0)
+                return;
+
+            for (int i = 0; i < installPrograms.Length; i++)
+            {
+                for (int k = 0; k < _ProgramList.Count; k++)
+                {
+                    string program = installPrograms[i].Substring(installPrograms[i].LastIndexOf(@"\") + 1);
+
+                    // 설치되어 있는 목록 확인
+                    if (program != _ProgramList[k].PR_NAME)
+                        continue;
+
+                    _ProgramList[k].INSTALLED = true;
+                    _ProgramList[k].CUR_VER = GetLocalFileVersion($"{installPrograms[i]}\\{_ProgramList[k].PR_FILE}");
+
+                    uiImageList_Install.Images.Add(_ProgramList[k].PR_ICON);
+
+                    ListViewItem item = new ListViewItem(_ProgramList[k].PR_NAME, uiImageList_Install.Images.Count - 1);
+                    uiLv_Install.Items.Add(item);
+                }
+            }
+
+            uiLv_Install.LargeImageList = uiImageList_Install;
         }
 
-        private void SetUpdateData()
+        private void SetUpdateData(string localPath, string ftpPath)
         {
+            List<string> installPrograms = new List<string>(Directory.GetDirectories(localPath));
+            List<string> updatePrograms = FTPManager.Instance.GetFileList(ftpPath);
 
+            for (int i = 0; i < _ProgramList.Count; i++)
+            {
+                for (int k = 0; k < installPrograms.Count; k++)
+                {
+                    if (_ProgramList[i].PR_NAME == installPrograms[k])
+                    {
+
+                    }
+                }
+
+                for (int k = 0; k < updatePrograms.Count; k++)
+                {
+                    if (_ProgramList[i].PR_NAME == updatePrograms[k])
+                    {
+
+                    }
+                }
+            }
         }
 
         private void SetDownloadData()
@@ -180,24 +272,21 @@ namespace ProgramManager
 
         }
 
-        private void ClearListView()
+        private string GetLocalFileVersion(string fileName)
         {
-            uiLv_Installed.Clear();
-            //imgList_Installed.Images.Clear();
-            //l_InstalledAppInfo.Clear();
+            string version = "";
 
-            uiLv_Update.Clear();
-            //imgList_Update.Images.Clear();
-            //l_UpdateAppInfo.Clear();
-
-            uiLv_Download.Clear();
-            //imgList_NotInstalled.Images.Clear();
-            //l_NotInstalledAppInfo.Clear();
+            if (System.IO.File.Exists(fileName) == true)
+            {
+                System.Diagnostics.FileVersionInfo fv = System.Diagnostics.FileVersionInfo.GetVersionInfo(fileName);
+                version = fv.FileVersion;
+            }
+            return version;
         }
 
         private void UpdateUI()
         {
-
+            //this.Refresh();
         }
 
         #endregion "  Methods End "
@@ -218,13 +307,13 @@ namespace ProgramManager
 
         private void MainWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            RefreshForm();
+            _MainThread.Start();
         }
 
         private void UiPnl_Title_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
-                mCurrentPosition = new Point(-e.X, -e.Y);
+                _CurrentPosition = new Point(-e.X, -e.Y);
         }
 
         private void UiPnl_Title_MouseMove(object sender, MouseEventArgs e)
@@ -233,8 +322,8 @@ namespace ProgramManager
             {
                 this.Location = new Point
                 (
-                    this.Location.X + (mCurrentPosition.X + e.X),
-                    this.Location.Y + (mCurrentPosition.Y + e.Y)
+                    this.Location.X + (_CurrentPosition.X + e.X),
+                    this.Location.Y + (_CurrentPosition.Y + e.Y)
                 );
             }
         }

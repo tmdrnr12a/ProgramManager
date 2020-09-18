@@ -75,12 +75,13 @@ AND USER_PWD = '#USER_PWD'
 SELECT PR_ID, PR_NAME, PR_ICON, PR_PATH, PR_FILE
 FROM PSK_DB.PM_PROGRAM_INFO
 WHERE 1=1
---PRID AND PR_ID IN (#PRID)
+/*PRID AND PR_ID IN (#PRID) PPID*/
 ORDER BY PR_NAME ASC
 ";
             if (User.PROGRAM != "ALL")
             {
-                query = query.Replace("--PRID ", "");
+                query = query.Replace("/*PRID ", "");
+                query = query.Replace(" PRID*/", "");
                 query = query.Replace("#PRID", $"'{User.PROGRAM.Replace(",", "','")}'");
             }
 
@@ -114,7 +115,7 @@ ORDER BY PR_NAME ASC
                     }
                     catch
                     {
-                        pd.PR_ICON = null;
+                        pd.PR_ICON = Properties.Resources.NotFoundImage;
                     }
 
                     pList.Add(pd);

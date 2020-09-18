@@ -89,7 +89,7 @@ namespace ProgramManager.Managers
 
             try
             {
-                string url = string.Format(@"FTP://{0}:{1}/{2}", this.ipAddr, this.port, serverFolder);
+                string url = serverFolder;
                 FtpWebRequest ftpRequest = (FtpWebRequest)WebRequest.Create(url);
                 ftpRequest.Credentials = new NetworkCredential(userId, pwd);
                 ftpRequest.KeepAlive = false;
