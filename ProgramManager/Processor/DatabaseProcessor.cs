@@ -1,5 +1,6 @@
 ﻿using ProgramManager.Etc;
 using ProgramManager.Manager;
+using ProgramManager.Managers;
 using ProgramManager.Models;
 using System;
 using System.Collections.Generic;
@@ -68,7 +69,7 @@ AND USER_PWD = '#USER_PWD'
 
         public List<ProgramData> GetProgramData()
         {
-            List<ProgramData> pList = new List<ProgramData>();
+            List<ProgramData> _ProgramList = new List<ProgramData>();
 
             string query =
 @"
@@ -106,7 +107,8 @@ ORDER BY PR_NAME ASC
                         PR_ID = ds.Tables[0].Rows[i]["PR_ID"].ToString(),
                         PR_NAME = ds.Tables[0].Rows[i]["PR_NAME"].ToString(),
                         PR_PATH = ds.Tables[0].Rows[i]["PR_PATH"].ToString(),
-                        PR_FILE = ds.Tables[0].Rows[i]["PR_FILE"].ToString()
+                        PR_FILE = ds.Tables[0].Rows[i]["PR_FILE"].ToString(),
+                        
                     };
 
                     try
@@ -118,11 +120,28 @@ ORDER BY PR_NAME ASC
                         pd.PR_ICON = Properties.Resources.NotFoundImage;
                     }
 
-                    pList.Add(pd);
+                    _ProgramList.Add(pd);
                 }
+
+                if (_ProgramList.Count > 0)
+                    ReplaceFTPPath(_ProgramList);
             }
 
-            return pList;
+            return _ProgramList;
+        }
+
+        private List<ProgramData> ReplaceFTPPath(List<ProgramData> _ProgramList)
+        {
+            string ip = FileManager.GetValueString("FTP", "IP", "");
+            string port = FileManager.GetValueString("FTP", "PORT", "");
+
+            foreach (ProgramData pd in _ProgramList)
+            {
+                pd.PR_PATH = pd.PR_PATH.Replace("{0}", ip);
+                pd.PR_PATH = pd.PR_PATH.Replace("{1}", port);
+            }
+
+            return _ProgramList;
         }
 
         public bool UpdatePassword(string pwd, string id)
