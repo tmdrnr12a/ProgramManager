@@ -1,0 +1,1382 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CSharpLib</name>
+    </assembly>
+    <members>
+        <member name="T:CSharpLib.UserNotFoundException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpLib.InvalidPasswordException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpLib.UserAlreadyExistsException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpLib.LoginErrorException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpLib.DirectoryAlreadyExistsException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpLib.UnsupportedOperatingSystemException">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:CSharpLib.WinForms.Forms">
+            <summary>
+            Class containing Windows Forms methods.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.WinForms.Forms.UpdateLabel(System.Windows.Forms.Form,System.Windows.Forms.Label,System.String)">
+            <summary>
+             Asyncronously updates the text of the specified label.
+            </summary>
+            <param name="form">Form containing label to update.</param>
+            <param name="label">Label to update.</param>
+            <param name="text">Text to set.</param>
+        </member>
+        <member name="T:CSharpLib.WinForms.FullScreen">
+            <summary>
+            Class for setting a Windows Form to fullscreen.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.WinForms.FullScreen.EnterFullScreenMode(System.Windows.Forms.Form)">
+            <summary>
+            Fills the screen with the specified form.  WARNING: This method will completely fullscreen your form and remove the taskbar. If you do not have another way of closing or resizing your form, it will not be removable.
+            </summary>
+            <param name="targetForm">The form to resize.</param>
+        </member>
+        <member name="M:CSharpLib.WinForms.FullScreen.LeaveFullScreenMode(System.Windows.Forms.Form)">
+            <summary>
+            Returns your form to its non-fullscreen state.
+            </summary>
+            <param name="targetForm">The form to resize.</param>
+        </member>
+        <member name="T:CSharpLib.Files">
+            <summary>
+            Contains methods for file actions.
+            </summary>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:CSharpLib.Files.Compress(System.IO.FileInfo)">
+            <summary>
+            Compresses the file from the FileInfo class, and puts the compressed (.gz) file in the same directory.
+            </summary>
+            <param name="fileToCompress">The FileInfo class containing the file to be compressed.</param>
+        </member>
+        <member name="M:CSharpLib.Files.Decompress(System.IO.FileInfo)">
+            <summary>
+            Decompresses the file from the FileInfo class, and puts the decompressed file in the same directory.
+            </summary>
+            <param name="fileToDecompress">The FileInfo class containing the .gz file to be decompressed.</param>
+        </member>
+        <member name="M:CSharpLib.Files.GetFileSize(System.String)">
+            <summary>
+            Returns the size, in bytes, of the specified file.
+            </summary>
+            <param name="file">The file to be analyzed.</param>
+            <returns></returns>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:CSharpLib.Files.GetDirectorySize(System.IO.DirectoryInfo)">
+            <summary>
+            Returns the size, in bytes, of the specified directory.
+            </summary>
+            <param name="d">The DirectoryInfo class containing the direstory path.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Files.RenameFile(System.String,System.String)">
+            <summary>
+            Renames a file.
+            </summary>
+            <param name="file">The full or relative path of the file.</param>
+            <param name="newName">The new name for the file, including the file extension.</param>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="T:CSharpLib.Directories">
+            <summary>
+            Contains methods for directory actions.
+            </summary>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+        </member>
+        <member name="M:CSharpLib.Directories.RenameDirectory(System.String,System.String)">
+            <summary>
+            Renames a directory.
+            </summary>
+            <param name="path">The full or relative path of the directory.</param>
+            <param name="newName">The new name for the directory.</param>
+            <exception cref="T:System.IO.DirectoryNotFoundException"></exception>
+        </member>
+        <member name="M:CSharpLib.Directories.CopyDirectory(System.String,System.String)">
+            <summary>
+            Copies a directory and all its contents to a new location.
+            </summary>
+            <param name="sourceFolder">The path of the directory to copy.</param>
+            <param name="outputFolder">The output directory.</param>
+        </member>
+        <member name="T:CSharpLib.Collections">
+            <summary>
+            Class containing methods for various collections.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.String[])">
+            <summary>
+            Returns the last element in the specified string array. If the array has no elements, it returns null.
+            </summary>
+            <param name="array">The string array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.Byte[])">
+            <summary>
+            Returns the last element in the specified byte array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The byte array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.Char[])">
+            <summary>
+            Returns the last element in the specified char array.  If the array has no elements, it returns null.
+            </summary>
+            <param name="array">The char array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.Decimal[])">
+            <summary>
+            Returns the last element in the specified decimal array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The decimal array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.Int64[])">
+            <summary>
+            Returns the last element in the specified long array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The long array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.Double[])">
+            <summary>
+            Returns the last element in the specified double array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The double array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.Single[])">
+            <summary>
+            Returns the last element in the specified float array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The float array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.Int32[])">
+            <summary>
+            Returns the last element in the specified int array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The int array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.SByte[])">
+            <summary>
+            Returns the last element in the specified sbyte array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The sbyte array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.Int16[])">
+            <summary>
+            Returns the last element in the specified short array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The short array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.UInt32[])">
+            <summary>
+            Returns the last element in the specified uint array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The uint array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.UInt64[])">
+            <summary>
+            Returns the last element in the specified ulong array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The ulong array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastElement(System.UInt16[])">
+            <summary>
+            Returns the last element in the specified ushort array. If the array has no elements, it returns 0.
+            </summary>
+            <param name="array">The ushort array to get the last element from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.String})">
+            <summary>
+            Returns the last item in the specified string list. If the list is empty, it returns null.
+            </summary>
+            <param name="list">The string list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.Byte})">
+            <summary>
+            Returns the last item in the specified byte list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The byte list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.Char})">
+            <summary>
+            Returns the last item in the specified char list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The char list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.Decimal})">
+            <summary>
+            Returns the last item in the specified decimal list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The decimal list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.Int64})">
+            <summary>
+            Returns the last item in the specified long list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The long list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.Double})">
+            <summary>
+            Returns the last item in the specified double list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The double list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.Single})">
+            <summary>
+            Returns the last item in the specified float list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The float list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            Returns the last item in the specified int list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The int list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.SByte})">
+            <summary>
+            Returns the last item in the specified sbyte list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The sbyte list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.Int16})">
+            <summary>
+            Returns the last item in the specified short list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The short list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.UInt32})">
+            <summary>
+            Returns the last item in the specified uint list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The uint list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.UInt64})">
+            <summary>
+            Returns the last item in the specified ulong list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The ulong list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetLastItem(System.Collections.Generic.List{System.UInt16})">
+            <summary>
+            Returns the last item in the specified ushort list. If the list is empty, it returns 0.
+            </summary>
+            <param name="list">The ushort list to get the last item from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.Int32[])">
+            <summary>
+            Returns the largest number in the specified int array.
+            </summary>
+            <param name="array">The int array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.Decimal[])">
+            <summary>
+            Returns the largest number in the specified decimal array.
+            </summary>
+            <param name="array">The decimal array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.Double[])">
+            <summary>
+            Returns the largest number in the specified double array.
+            </summary>
+            <param name="array">The double array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.Single[])">
+            <summary>
+            Returns the largest number in the specified float array.
+            </summary>
+            <param name="array">The float array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.Int64[])">
+            <summary>
+            Returns the largest number in the specified long array.
+            </summary>
+            <param name="array">The long array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.Int16[])">
+            <summary>
+            Returns the largest number in the specified short array.
+            </summary>
+            <param name="array">The short array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.UInt32[])">
+            <summary>
+            Returns the largest number in the specified uint array.
+            </summary>
+            <param name="array">The uint array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.UInt64[])">
+            <summary>
+            Returns the largest number in the specified ulong array.
+            </summary>
+            <param name="array">The ulong array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMaxValue(System.UInt16[])">
+            <summary>
+            Returns the largest number in the specified ushort array.
+            </summary>
+            <param name="array">The ushort array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.Int32[])">
+            <summary>
+            Returns the smallest number in the specified int array.
+            </summary>
+            <param name="array">The int array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.Decimal[])">
+            <summary>
+            Returns the smallest number in the specified decimal array.
+            </summary>
+            <param name="array">The decimal array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.Double[])">
+            <summary>
+            Returns the smallest number in the specified double array.
+            </summary>
+            <param name="array">The double array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.Single[])">
+            <summary>
+            Returns the smallest number in the specified float array.
+            </summary>
+            <param name="array">The float array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.Int64[])">
+            <summary>
+            Returns the smallest number in the specified long array.
+            </summary>
+            <param name="array">The long array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.Int16[])">
+            <summary>
+            Returns the smallest number in the specified short array.
+            </summary>
+            <param name="array">The short array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.UInt32[])">
+            <summary>
+            Returns the smallest number in the specified uint array.
+            </summary>
+            <param name="array">The uint array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.UInt64[])">
+            <summary>
+            Returns the smallest number in the specified ulong array.
+            </summary>
+            <param name="array">The ulong array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetMinValue(System.UInt16[])">
+            <summary>
+            Returns the smallest number in the specified ushort array.
+            </summary>
+            <param name="array">The ushort array to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.ClearArray(System.Array)">
+            <summary>
+            Clears an array of all contents.
+            </summary>
+            <param name="array">The array to clear.</param>
+        </member>
+        <member name="M:CSharpLib.Collections.GetEnumSize(System.Type)">
+            <summary>
+            Returns the number of elements in the specified enum.
+            </summary>
+            <param name="enum">The enum to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetChar(System.String,System.Int32)">
+            <summary>
+            Returns the character from the given string at the specified index.
+            </summary>
+            <param name="str">The string to search.</param>
+            <param name="index">The index of the desired character.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Collections.GetIndexOfChar(System.String,System.Char)">
+            <summary>
+            Returns the index of the first occurrence of the given character from the specified string.
+            </summary>
+            <param name="str">The string to search.</param>
+            <param name="c">The character to search for.</param>
+            <returns></returns>
+        </member>
+        <member name="T:CSharpLib.Shortcut">
+            <summary>
+            Class for manipulating shortcuts.
+            </summary>
+            <exception cref="T:System.ArgumentNullException"></exception>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:CSharpLib.Shortcut.GetTargetPathofShortcut(System.String)">
+            <summary>
+            Returns the target path of the specified shortcut (.lnk) file.
+            </summary>
+            <param name="pathofshortcut">Full or relative path of the shortcut file.</param>
+            <returns></returns>
+            <exception cref="T:System.IO.FileNotFoundException"></exception>
+        </member>
+        <member name="M:CSharpLib.Shortcut.CreateShortcutToFile(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a shortcut that targets a file.
+            </summary>
+            <param name="TargetFile">The file that the shortcut targets.</param>
+            <param name="ShortcutFile">The shortcut file.</param>
+            <param name="Description">Optional parameter. Sets the shortcut file's description.</param>
+            <param name="Arguments">Optional parameter. Sets the shortcut file's arguments.</param>
+            <param name="IconLocation">Optional parameter. Sets the icon for the shortcut file.</param>
+            <param name="WorkingDirectory">Optionl parameter. Sets the working directory.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="M:CSharpLib.Shortcut.CreateShortcutToFolder(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Creates a shortcut that targets a folder.
+            </summary>
+            <param name="TargetPath">The folder that the shortcut targets.</param>
+            <param name="ShortcutFile">The shortcut file.</param>
+            <param name="Description">Optional parameter. Sets the shortcut file's description.</param>
+            <param name="Arguments">Optional parameter. Sets the shortcut file's arguments.</param>
+            <param name="HotKey">Optional parameter. Sets the hotkey.</param>
+            <param name="WorkingDirectory">Optional parameter. Sets the working directory.</param>
+            <exception cref="T:System.ArgumentNullException"></exception>
+        </member>
+        <member name="T:CSharpLib.Encryption">
+            <summary>
+            Class for string encryption and decryption.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Encryption.Encrypt(System.String,System.String)">
+            <summary>
+            Encrypts a string with the specified password, and returns the encrypted string.
+            </summary>
+            <param name="text">The text to encrypt.</param>
+            <param name="password">The password or passphrase to use for encryption.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Encryption.Decrypt(System.String,System.String)">
+            <summary>
+            Returns the specified encrypted string with the password used to encrypt.
+            </summary>
+            <param name="encryptedText">The encrypted string to be decrypted.</param>
+            <param name="password">The password used to encrypt the string.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Encryption.GenerateHash(System.String)">
+            <summary>
+            Hashes the given string and returns the resulting hash. NOTE: This method is one-way: the generated hash cannot be decrypted.
+            </summary>
+            <param name="text">String to generate the hash from.</param>
+            <returns></returns>
+        </member>
+        <member name="T:CSharpLib.Bible">
+            <summary>
+            Class for Bible actions.
+            </summary>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:CSharpLib.Bible.#ctor">
+            <summary>
+            Starts an instance of the Bible class.
+            </summary>
+        </member>
+        <member name="T:CSharpLib.Bible.Book">
+            <summary>
+            Books of the Bible.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Genesis">
+            <summary>
+            The book of Genesis.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Exodus">
+            <summary>
+            The book of Exodus.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Leviticus">
+            <summary>
+            The book of Leviticus.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Numbers">
+            <summary>
+            The book of Numbers.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Deuteronomy">
+            <summary>
+            The book of Deuteronomy.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Joshua">
+            <summary>
+            The book of Joshua.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Judges">
+            <summary>
+            The book of Judges.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Ruth">
+            <summary>
+            The book of Ruth.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.First_Samuel">
+            <summary>
+            The book of 1 Samuel.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Second_Samuel">
+            <summary>
+            The book of 2 Samuel.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.First_Kings">
+            <summary>
+            The book of 1 Kings.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Second_Kings">
+            <summary>
+            The book of 2 Kings.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.First_Chronicles">
+            <summary>
+            The book of 1 Chronicles.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Second_Chronicles">
+            <summary>
+            The book of 2 Chronicles.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Ezra">
+            <summary>
+            The book of Ezra.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Nehemiah">
+            <summary>
+            The book of Nehemiah.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Esther">
+            <summary>
+            The book of Esther.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Job">
+            <summary>
+            The book of Job.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Psalms">
+            <summary>
+            The book of Psalms.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Proverbs">
+            <summary>
+            The book of Proverbs.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Ecclesiastes">
+            <summary>
+            The book of Ecclesiastes.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.SongofSolomon">
+            <summary>
+            The book of Song of Solomon, or Song of Songs.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Isaiah">
+            <summary>
+            The book of Isaiah.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Jeremiah">
+            <summary>
+            The book of Jeremiah.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Lamentations">
+            <summary>
+            The book of Lamentations.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Ezekiel">
+            <summary>
+            The book of Ezekiel.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Daniel">
+            <summary>
+            The book of Daniel.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Hosea">
+            <summary>
+            The book of Hosea.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Joel">
+            <summary>
+            The book of Joel.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Amos">
+            <summary>
+            The book of Amos.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Obadiah">
+            <summary>
+            The book of Obadiah.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Jonah">
+            <summary>
+            The book of Jonah.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Micah">
+            <summary>
+            The book of Micah.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Nahum">
+            <summary>
+            The book of Nahum.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Habakkuk">
+            <summary>
+            The book of Habakkuk.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Zephaniah">
+            <summary>
+            The book of Zephaniah.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Haggai">
+            <summary>
+            The book of Haggai.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Zechariah">
+            <summary>
+            The book of Zechariah.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Malachi">
+            <summary>
+            The book of Malachi.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Matthew">
+            <summary>
+            The book of Matthew.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Mark">
+            <summary>
+            The book of Mark.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Luke">
+            <summary>
+            The book of Luke.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.John">
+            <summary>
+            The book of John.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Acts">
+            <summary>
+            The book of Acts.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Romans">
+            <summary>
+            The book of Romans.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.First_Corinthians">
+            <summary>
+            The book of 1 Corinthians.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Second_Corinthians">
+            <summary>
+            The book of 2 Corinthians.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Galatians">
+            <summary>
+            The book of Galations.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Ephesians">
+            <summary>
+            The book of Ephesians.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Philippians">
+            <summary>
+            The book of Philippians.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Colossians">
+            <summary>
+            The book of Colossians.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.First_Thessalonians">
+            <summary>
+            The book of 1 Thessalonians.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Second_Thessalonians">
+            <summary>
+            The book of 2 Thessalonians.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.First_Timothy">
+            <summary>
+            The book of 1 Timothy.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Second_Timothy">
+            <summary>
+            The book of 2 Timothy.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Titus">
+            <summary>
+            The book of Titus.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Philemon">
+            <summary>
+            The book of Philemon.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Hebrews">
+            <summary>
+            The book of Hebrews.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.James">
+            <summary>
+            The book of James.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.First_Peter">
+            <summary>
+            The book of 1 Peter.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Second_Peter">
+            <summary>
+            The book of 2 Peter.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.First_John">
+            <summary>
+            The book of 1 John.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Second_John">
+            <summary>
+            The book of 2 John.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Third_John">
+            <summary>
+            The book of 3 John.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Jude">
+            <summary>
+            The book of Jude.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Bible.Book.Revelation">
+            <summary>
+            The book of Revelation.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Bible.GetVerse(CSharpLib.Bible.Book,System.Int32,System.Int32)">
+            <summary>
+            Returns a verse based on the specified book, chapter, and verse.
+            </summary>
+            <param name="book"></param>
+            <param name="chapter"></param>
+            <param name="verse"></param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:CSharpLib.Bible.GetChapter(CSharpLib.Bible.Book,System.Int32)">
+            <summary>
+            Returns a string array of verses that compose the chapter in the given book. The resulting string array is not zero-based (index 1 is verse 1, index 2 is verse 2, etc.).
+            </summary>
+            <param name="book">The book to get the chapter from.</param>
+            <param name="chapter">The chapter to get the verses from.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:CSharpLib.Bible.GetChapter(CSharpLib.Bible.Book,System.Int32,System.Boolean)">
+            <summary>
+            Returns a string array of verses that compose the chapter in the given book.
+            </summary>
+            <param name="book">The book to get the chapter from.</param>
+            <param name="chapter">The chapter to get the verses from.</param>
+            <param name="zeroBased">Determines whether the returned string array should be zero-based.</param>
+            <returns></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException"></exception>
+        </member>
+        <member name="M:CSharpLib.Bible.GetChapterAsList(CSharpLib.Bible.Book,System.Int32)">
+            <summary>
+            Returns a list of verses that compose the chapter from the given book. The resulting string list is not zero-based (index 1 is verse 1, index 2 is verse 2, etc.).
+            </summary>
+            <param name="book">The book to get the chapter from.</param>
+            <param name="chapter">The chapter to get the verses from.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Bible.GetChapterAsList(CSharpLib.Bible.Book,System.Int32,System.Boolean)">
+            <summary>
+            Returns a list of verses that compose the chapter from the given book.
+            </summary>
+            <param name="book">The book to get the chapter from.</param>
+            <param name="chapter">The chapter to get the verses from.</param>
+            <param name="zeroBased">Determines whether the returned string list should be zero-based.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Bible.Close">
+            <summary>
+            Closes the current Bible instance.
+            </summary>
+        </member>
+        <member name="T:CSharpLib.Computer.User">
+            <summary>
+            Interfaces as a miniature user account.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Computer.User.#ctor(System.String,System.String)">
+            <summary>
+            Creates a new user with the specified username and password.
+            </summary>
+            <param name="username">The username of the account to create.</param>
+            <param name="password">The password of the account to create.</param>
+            <exception cref="T:CSharpLib.UserAlreadyExistsException"></exception>
+        </member>
+        <member name="M:CSharpLib.Computer.User.Login(System.String,System.String)">
+            <summary>
+            Logs in an existing user.
+            </summary>
+            <param name="username">The username of the account.</param>
+            <param name="password">The password of the account.</param>
+        </member>
+        <member name="M:CSharpLib.Computer.User.Logout">
+            <summary>
+            Logs the current user out.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Computer.User.RemoveUser(System.String,System.String)">
+            <summary>
+            Removes the specified user.
+            </summary>
+            <param name="username">The username of the account to remove.</param>
+            <param name="password">The password of the account to remove.</param>
+            <exception cref="T:CSharpLib.UserNotFoundException"></exception>
+            <exception cref="T:CSharpLib.InvalidPasswordException"></exception>
+        </member>
+        <member name="M:CSharpLib.Computer.User.GetUserAccounts">
+            <summary>
+            Returns a string array of registered user accounts.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Computer.User.WriteFile(System.String,System.String[])">
+            <summary>
+            Writes to the specified file in the current user or creates it if it doesn't exist.
+            </summary>
+            <param name="filename">The file to write to.</param>
+            <param name="texttowrite">The text to write to the file.</param>
+            <exception cref="T:CSharpLib.LoginErrorException"></exception>
+        </member>
+        <member name="M:CSharpLib.Computer.User.ReadFile(System.String)">
+            <summary>
+            Reads the given file and returns a string array of lines.
+            </summary>
+            <param name="filename">The file to read.</param>
+            <returns></returns>
+            <exception cref="T:CSharpLib.LoginErrorException"></exception>
+        </member>
+        <member name="M:CSharpLib.Computer.User.GetUserSize(System.String)">
+            <summary>
+            Returns the size, in bytes, of the user account.
+            </summary>
+            <param name="username">The username of the account.</param>
+            <returns></returns>
+            <exception cref="T:CSharpLib.UserNotFoundException"></exception>
+        </member>
+        <member name="M:CSharpLib.Computer.User.CreateDirectory(System.String)">
+            <summary>
+            Creates a directory in the current user account.
+            </summary>
+            <param name="directoryName">The name of the directory to create.</param>
+            <exception cref="T:CSharpLib.DirectoryAlreadyExistsException"></exception>
+            <exception cref="T:CSharpLib.LoginErrorException"></exception>
+        </member>
+        <member name="M:CSharpLib.Computer.User.GetFiles">
+            <summary>
+            Returns a list of files in the root directory of the current user account.
+            </summary>
+            <returns></returns>
+            <exception cref="T:CSharpLib.LoginErrorException"></exception>
+        </member>
+        <member name="T:CSharpLib.Computer.HardwareInfo">
+            <summary>
+            Contains information about the system hardware.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.ProcessorID">
+            <summary>
+            The ID of the processor.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.ProcessorClockSpeed">
+            <summary>
+            The clock speed of the processor.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.ProcessorMaxClockSpeed">
+            <summary>
+            The processor's maximum clock speed.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.ProcessorName">
+            <summary>
+            The name of the processor.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.ProcessorStatus">
+            <summary>
+            The processor status.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.ProcessorArchitecture">
+            <summary>
+            The processor architecture.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.BIOSManufacturer">
+            <summary>
+            The BIOS manufacturer.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.BIOSName">
+            <summary>
+            The BIOS name.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.BIOSMajorVersion">
+            <summary>
+            The major version of the BIOS.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.HardwareInfo.BIOSMinorVersion">
+            <summary>
+            The minor version of the BIOS.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Computer.HardwareInfo.#ctor">
+            <summary>
+            Starts a new instance of the HardwareInfo class.
+            </summary>
+        </member>
+        <member name="T:CSharpLib.Computer.OSInfo">
+            <summary>
+            Contains information about the operating system.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.BootDirectory">
+            <summary>
+            The operating system's boot directory.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.ScratchDirectory">
+            <summary>
+            The operating system's scratch directory.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.TempDirectory">
+            <summary>
+            The operating system's temporary directory.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.BootDevice">
+            <summary>
+            The operating system's boot device.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.BuildNumber">
+            <summary>
+            The operating system's build number.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.SystemName">
+            <summary>
+            The name of the operating system.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.MaxNumberofProcesses">
+            <summary>
+            The operating system's maximum number of processes.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.MaxProcessMemorySize">
+            <summary>
+            The maximum size of a process.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.NumberofProcesses">
+            <summary>
+            The current number of processes.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.NumberofUsers">
+            <summary>
+            The current number of users.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.OSArchitecture">
+            <summary>
+            The operating system's architecture.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.SystemDirectory">
+            <summary>
+            The system directory of the operating system.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.SystemDrive">
+            <summary>
+            The drive that contains the operating system.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.OSInfo.WindowsDirectory">
+            <summary>
+            The Windows directory of the operating system.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Computer.OSInfo.#ctor">
+            <summary>
+            Starts a new instance of the OSInfo class.
+            </summary>
+        </member>
+        <member name="T:CSharpLib.Computer.NetworkInfo">
+            <summary>
+            Contains methods for network actions.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.NetworkInfo.IsConnected">
+            <summary>
+            Checks whether a network connection exists and returns true or false.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.NetworkInfo.GetIPAddresses">
+            <summary>
+            Returns a string array of the device's IP addresses.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.NetworkInfo.GetNetworkAdapters">
+            <summary>
+            Returns a string array of connected network adapters.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.NetworkInfo.IPConfig">
+            <summary>
+            Returns a dictionary in which the keys are network interface names and their corresponding values are their IP addresses.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Computer.NetworkInfo.GetHostName">
+            <summary>
+            Returns the computer's host name.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Computer.NetworkInfo.#ctor">
+            <summary>
+            Starts a new instance of the NetworkInfo class.
+            </summary>
+        </member>
+        <member name="T:CSharpLib.Windows.Win32">
+            <summary>
+            Contains Windows-specific methods.
+            </summary>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Win32.GetCurrentProcesses">
+            <summary>
+            Returns a list of current processes.
+            </summary>
+            <returns></returns>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Win32.GetProcesses">
+            <summary>
+            Returns a dictionary in which the keys are the device's current processes and their corresponding values are their IDs.
+            </summary>
+            <returns></returns>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Win32.IsRunning(System.String)">
+            <summary>
+            Checks whether a process, by name, is running and returns true or false.
+            </summary>
+            <param name="processName">The name of the process to check.</param>
+            <returns></returns>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Win32.IsRunning(System.Int32)">
+            <summary>
+            Checks whether a process, by ID, is running and returns true or false.
+            </summary>
+            <param name="processId">The ID of the process to check.</param>
+            <returns></returns>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Win32.KillProcess(System.Int32)">
+            <summary>
+            Terminates the specified process and all its children from the processes' ID.
+            </summary>
+            <param name="processId">The ID of the process to terminate.</param>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+            <exception cref="T:System.ArgumentException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Win32.KillProcess(System.String)">
+            <summary>
+            Terminates the specified process using its name (without extension).
+            </summary>
+            <param name="processName">The name of the process to stop.</param>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Win32.GetUsers">
+            <summary>
+            Returns a string array of local users.
+            </summary>
+            <returns></returns>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Win32.GetLogicalDrives">
+            <summary>
+            Returns a string array of logical drives.
+            </summary>
+            <returns></returns>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="T:CSharpLib.Windows.GUI">
+            <summary>
+            Contains methods for the Graphical User Interface (GUI) in Windows.
+            </summary>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.GUI.SetDesktopWallpaper(System.String)">
+            <summary>
+            Sets the desktop wallpaper with the specified image.
+            </summary>
+            <param name="image">The image file to set.</param>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.GUI.CloseApp(System.String)">
+            <summary>
+            Closes a graphical Windows application.
+            </summary>
+            <param name="processName">The name of the application to close.</param>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="T:CSharpLib.Windows.Clock">
+            <summary>
+            Contains methods for the system clock.
+            </summary>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.Year">
+            <summary>
+            The current year.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.Month">
+            <summary>
+            The current month.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.Day">
+            <summary>
+            The current day.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.Hour">
+            <summary>
+            The current hour.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.Minute">
+            <summary>
+            The current minute at the moment when the class instance is created.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.Millisecond">
+            <summary>
+            The millisecond at the moment when the class instance is created.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.Second">
+            <summary>
+            The current second at the moment when the class instance is created.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.DayofWeek">
+            <summary>
+            The current day of the week.
+            </summary>
+        </member>
+        <member name="P:CSharpLib.Windows.Clock.Period">
+            <summary>
+            The current period (AM/PM).
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Windows.Clock.#ctor">
+            <summary>
+            Starts a new instance of the Clock class.
+            </summary>
+            <exception cref="T:CSharpLib.UnsupportedOperatingSystemException"></exception>
+        </member>
+        <member name="M:CSharpLib.Windows.Clock.Refresh">
+            <summary>
+            Updates the retrieved time.
+            </summary>
+        </member>
+        <member name="T:CSharpLib.Windows.CMD">
+            <summary>
+            Contains methods for manipulating the Windows commend prompt.
+            </summary>
+        </member>
+        <member name="T:CSharpLib.Windows.CMD.ConsoleArea">
+            <summary>
+            Represents areas of the Windows CMD.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Windows.CMD.ConsoleArea.Foreground">
+            <summary>
+            Represents the console's foreground.
+            </summary>
+        </member>
+        <member name="F:CSharpLib.Windows.CMD.ConsoleArea.Background">
+            <summary>
+            Represents the console's background.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Windows.CMD.GetConsoleColor(CSharpLib.Windows.CMD.ConsoleArea)">
+            <summary>
+            Returns the current color of the specified console area.
+            </summary>
+            <param name="area">The area of the console.</param>
+            <returns></returns>
+        </member>
+        <member name="M:CSharpLib.Windows.CMD.SetConsoleColor(CSharpLib.Windows.CMD.ConsoleArea,System.ConsoleColor)">
+            <summary>
+            Sets the specified console area with the given console color and clears the console.
+            </summary>
+            <param name="area">The area of the console.</param>
+            <param name="color">The color to set the area as.</param>
+        </member>
+        <member name="M:CSharpLib.Windows.CMD.ResetConsoleColors">
+            <summary>
+            Resets the console's foreground and background colors to their original colors.
+            </summary>
+        </member>
+        <member name="M:CSharpLib.Windows.CMD.NewLine(System.Int32)">
+            <summary>
+            Enters the specified number of newlines in the console.
+            </summary>
+            <param name="numberofLines">The number of lines to enter.</param>
+        </member>
+    </members>
+</doc>

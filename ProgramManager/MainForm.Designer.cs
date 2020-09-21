@@ -204,7 +204,7 @@
             this.uiLab_AppNewVersion.AutoSize = true;
             this.uiLab_AppNewVersion.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.uiLab_AppNewVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
-            this.uiLab_AppNewVersion.Location = new System.Drawing.Point(184, 41);
+            this.uiLab_AppNewVersion.Location = new System.Drawing.Point(163, 41);
             this.uiLab_AppNewVersion.Name = "uiLab_AppNewVersion";
             this.uiLab_AppNewVersion.Size = new System.Drawing.Size(101, 12);
             this.uiLab_AppNewVersion.TabIndex = 7;

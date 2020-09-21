@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Drawing;
 using System.Windows.Forms;
 using ProgramManager.Manager;
 using ProgramManager.Processor;
@@ -14,6 +15,8 @@ namespace ProgramManager
 
         private readonly int second = 3;
 
+        private Point _CurrentPosition = new Point(0, 0);
+
         #endregion " Variables End"
 
         #region " Create & Load & Shown "
@@ -23,6 +26,9 @@ namespace ProgramManager
             InitializeComponent();
 
             this.Shown += LoginForm_Shown;
+
+            uiPnl_Main.MouseDown += UiPnl_Main_MouseDown;
+            uiPnl_Main.MouseMove += UiPnl_Main_MouseMove;
 
             uiBtn_Login.Click += UiBtn_Login_Click;
             uiBtn_Login.MouseDown += UiBtn_Login_MouseDown;
@@ -175,6 +181,24 @@ namespace ProgramManager
                 return;
 
             uiBtn_Login.BackgroundImage = Properties.Resources.LoginButtonClick;
+        }
+
+        private void UiPnl_Main_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                this.Location = new Point
+                (
+                    this.Location.X + (_CurrentPosition.X + e.X),
+                    this.Location.Y + (_CurrentPosition.Y + e.Y)
+                );
+            }
+        }
+
+        private void UiPnl_Main_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+                _CurrentPosition = new Point(-e.X, -e.Y);
         }
 
         #endregion " Events End "

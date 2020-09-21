@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -56,9 +57,13 @@ namespace ProgramManager
 
             uiLv_Install.MouseClick += UiLv_Install_MouseClick;
 
+            uiLv_Install.Click += UiLv_Install_Click;
+            uiLv_Update.Click += UiLv_Update_Click;
+            uiLv_Download.Click += UiLv_Download_Click;
+
             uiLv_Install.DoubleClick += UiLv_Install_DoubleClick;
-            uiLv_Update.DoubleClick += UiLv_Update_DoubleClick;
-            uiLv_Download.DoubleClick += UiLv_Download_DoubleClick;
+            uiLv_Update.DoubleClick += UiLv_UpdateOrDownload_DoubleClick;
+            uiLv_Download.DoubleClick += UiLv_UpdateOrDownload_DoubleClick;
 
             uiBtn_History.Click += UiBtn_History_Click;
         }
@@ -77,8 +82,16 @@ namespace ProgramManager
         private void InitVariables()
         {
             _ProgramList = new List<ProgramData>();
-            _MainWorker = new BackgroundWorker();
-            _RefreshWorker = new BackgroundWorker();
+
+            _MainWorker = new BackgroundWorker
+            {
+                WorkerSupportsCancellation = true
+            };
+
+            _RefreshWorker = new BackgroundWorker
+            {
+                WorkerSupportsCancellation = true
+            };
         }
 
         private void InitForm()
@@ -198,7 +211,7 @@ namespace ProgramManager
 
         private void SetProgramDataList()
         {
-            string localPath = FileManager.GetValueString("LOCAL", "DOWNLOAD_PATH", "");
+            string localPath = GetLocalPath();
             string ftpPath = GetFTPPath();
 
             SetInstallData(localPath);
@@ -273,13 +286,13 @@ namespace ProgramManager
             {
                 for (int k = 0; k < _ProgramList.Count; k++)
                 {
-                    if (_ProgramList[k].INSTALLED == false)
-                        continue;
-
                     if (updatePrograms[i] != _ProgramList[k].PR_NAME)
                         continue;
 
                     _ProgramList[k].NEW_VER = GetNewFileVersion(_ProgramList[k].PR_PATH);
+
+                    if (_ProgramList[k].CUR_VER == string.Empty)
+                        _ProgramList[k].CUR_VER = _ProgramList[k].NEW_VER;
 
                     break;
                 }
@@ -384,7 +397,7 @@ namespace ProgramManager
 
         private void DeleteProgram(string programName)
         {
-            string localPath = FileManager.GetValueString("LOCAL", "DOWNLOAD_PATH", "");
+            string localPath = GetLocalPath();
             string deletePath = Path.Combine(localPath, programName);
 
             if (Directory.Exists(deletePath) == true)
@@ -393,7 +406,7 @@ namespace ProgramManager
                 MessageBox.Show("Delete complete.", "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            RefreshForm();
+            _RefreshWorker.RunWorkerAsync();
         }
 
         private ProgramData GetProgramData(string programName)
@@ -408,6 +421,86 @@ namespace ProgramManager
             return pd;
         }
 
+        private string GetLinkFile(string fileName)
+        {
+            string linkFile = fileName + ".lnk";
+
+            if (File.Exists(linkFile) == false)
+            {
+                CSharpLib.Shortcut sc = new CSharpLib.Shortcut();
+                sc.CreateShortcutToFile(fileName, linkFile);
+            }
+            return linkFile;
+        }
+
+        private string GetLocalPath()
+        {
+            return FileManager.GetValueString("LOCAL", "DOWNLOAD_PATH", "");
+        }
+
+        private void SetAppInfo(ListView listView, bool newVersionFlag)
+        {
+            string programName = listView.SelectedItems[0].Text;
+            uiLab_AppName.Text = programName;
+
+            var appInfo = _ProgramList.Where(r => r.PR_NAME == programName).Select(x => x).ToList();
+
+            if (appInfo.Count() == 0)
+                return;
+
+            ProgramData pd = appInfo[0] as ProgramData;
+            uiLab_AppCurVersion.Text = pd.CUR_VER;
+            uiLab_AppNewVersion.Text = $"(New Version {appInfo[0].NEW_VER})";
+
+            string descFullPath;
+            string descFile = FileManager.GetValueString("ETC", "DESCRIPTION_FILE", "");
+
+            if (listView == uiLv_Install)
+            {
+                string localPath = GetLocalPath();
+                descFullPath = $@"{localPath}{programName}\{descFile}";
+            }
+            else
+            {
+                string ftpFullPath = $@"{pd.PR_PATH}/{pd.NEW_VER}/{descFile}";
+                descFullPath = GetFTPDescription(ftpFullPath, programName, descFile);
+            }
+
+            try
+            {
+                if (File.Exists(descFullPath) == true)
+                    uiRtb_Description.LoadFile(descFullPath, RichTextBoxStreamType.RichText);
+                else
+                    uiRtb_Description.Clear();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            ShowNewVersionInfo(newVersionFlag);
+        }
+
+        private string GetFTPDescription(string ftpFullPath, string programName, string descFile)
+        {
+            string dummyPath = $@"{GetLocalPath()}{programName}";
+            string dummyFile = $@"{dummyPath}\{descFile}";
+
+            FTPManager.Instance.DownLoad(dummyFile, ftpFullPath);
+         
+            return dummyFile;
+        }
+
+        private void ShowNewVersionInfo(bool flag)
+        {
+            uiLab_AppNewVersion.Visible = flag;
+        }
+
+        private void EnableControl(Control ctl, bool flag)
+        {
+            ctl.Enabled = flag;
+        }
+
         #endregion "  Methods End "
 
         #region " Events "
@@ -416,6 +509,9 @@ namespace ProgramManager
         {
             while (true)
             {
+                if (_MainWorker.CancellationPending == true)
+                    break;
+
                 // FTP 연결 시도
                 if (ConnectToFTP() == true)
                     break;
@@ -431,6 +527,9 @@ namespace ProgramManager
 
         private void RefreshWorker_DoWork(object sender, DoWorkEventArgs e)
         {
+            if (_RefreshWorker.CancellationPending == true)
+                return;
+
             RefreshForm();
         }
 
@@ -462,7 +561,13 @@ namespace ProgramManager
             string msg = "Do you want to close program?";
             if (MessageBox.Show(msg, "Inform", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
             {
-                // 스레드들 종료해야 함!!
+                _MainWorker.CancelAsync();
+                _MainWorker.Dispose();
+                _MainWorker = null;
+
+                _RefreshWorker.CancelAsync();
+                _RefreshWorker.Dispose();
+                _RefreshWorker = null;
 
                 this.Close();
             }
@@ -502,8 +607,8 @@ namespace ProgramManager
                 item01.Click += Delete_Click;
 
                 ToolStripMenuItem item02 = new ToolStripMenuItem("Installed Path");
-                //item02.Click -= SelectedPath_Click;
-                //item02.Click += SelectedPath_Click;
+                item02.Click += InstallPath_Click;
+                item02.Click += InstallPath_Click;
 
                 menu.Items.Add(item01);
 
@@ -520,11 +625,61 @@ namespace ProgramManager
                 return;
 
             string programName = uiLv_Install.SelectedItems[0].Text;
+            string msg = $"[{programName}] Do you want to delete program ?";
+
+            if (MessageBox.Show(msg, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                return;
 
             if (CheckExecuting(programName) == true)
                 return;
 
             DeleteProgram(programName);
+        }
+
+        private void InstallPath_Click(object sender, EventArgs e)
+        {
+            if (uiLv_Install.SelectedItems.Count == 0)
+                return;
+
+            string programName = uiLv_Install.SelectedItems[0].Text;
+            string localPath = GetLocalPath();
+            string installPath = $"{localPath}{programName}";
+
+            Process.Start("explorer.exe", installPath);
+        }
+
+        private void UiLv_Install_Click(object sender, EventArgs e)
+        {
+            ListView listView = sender as ListView;
+
+            if (listView.SelectedItems.Count == 0)
+                return;
+
+            SetAppInfo(listView, true);
+            EnableControl(uiBtn_History, true);
+        }
+
+        private void UiLv_Update_Click(object sender, EventArgs e)
+        {
+            ListView listView = sender as ListView;
+
+            if (listView.SelectedItems.Count == 0)
+                return;
+
+            SetAppInfo(listView, true);
+            EnableControl(uiBtn_History, false);
+        }
+
+        private void UiLv_Download_Click(object sender, EventArgs e)
+        {
+            ListView listView = sender as ListView;
+
+            if (listView.SelectedItems.Count == 0)
+                return;
+
+            SetAppInfo(listView, false);
+
+            EnableControl(uiBtn_History, false);
         }
 
         private void UiLv_Install_DoubleClick(object sender, EventArgs e)
@@ -542,44 +697,64 @@ namespace ProgramManager
                 string msg = $"Do you want to update new version program?\n[{programName}] {pd.CUR_VER} -> {pd.NEW_VER}";
                 if (MessageBox.Show(msg, "Inform", MessageBoxButtons.OKCancel, MessageBoxIcon.Information) == DialogResult.OK)
                 {
-                    UiLv_Update_DoubleClick(listView, null);
+                    UiLv_UpdateOrDownload_DoubleClick(listView, null);
                     return;
                 }
             }
 
             this.Cursor = Cursors.WaitCursor;
 
-            //string exeName = "";
-            //for (int i = 0; i < l_PD.Count; i++)
-            //{
-            //    if (l_PD[i].PR_NAME == selectedItemName)
-            //    {
-            //        exeName = l_PD[i].PR_FULL_PATH.Substring(l_PD[i].PR_FULL_PATH.LastIndexOf(@"\") + 1).Replace(".exe", "");
-            //        break;
-            //    }
-            //}
-            //string fileName = localPath + @"\" + selectedItemName + @"\" + exeName;
+            string localPath = GetLocalPath();
 
-            //string exeFile = "";
+            string exeFile = $"{localPath}{programName}\\{pd.PR_FILE}";
 
-            //// 링크파일 생성
-            //string excutableFile = GetLinkFile(fileName);
+            // 링크파일 생성
+            // Nuget Command : Install-Package CSharpLib -Version 2.4.5
+            string linkFile = GetLinkFile(exeFile);
 
-            //// 링크경로로 프로그램 실행
-            //StartProgram(excutableFile);
+            // 링크경로로 프로그램 실행
+            Process.Start(linkFile, User.ID);
 
             this.Cursor = Cursors.Default;
-
         }
 
-        private void UiLv_Update_DoubleClick(object sender, EventArgs e)
+        private void UiLv_UpdateOrDownload_DoubleClick(object sender, EventArgs e)
         {
+            ListView listView = sender as ListView;
 
-        }
+            if (listView.SelectedItems.Count == 0)
+                return;
 
-        private void UiLv_Download_DoubleClick(object sender, EventArgs e)
-        {
+            string command = string.Empty;
+            
+            if (listView == uiLv_Update) 
+                command = "update";
+            else if (listView == uiLv_Download) 
+                command = "download";
 
+            string programName = listView.SelectedItems[0].Text;
+
+            if (CheckExecuting(programName) == true)
+                return;
+
+            ProgramData pd = GetProgramData(programName);
+            string ftpPath = $@"{pd.PR_PATH}/{pd.NEW_VER}/";
+            string localPath = GetLocalPath();
+            localPath = $@"{localPath}{pd.PR_NAME}\";
+
+            string msg;
+            if (FTPManager.Instance.DownloadFolder(localPath, ftpPath) == true)
+            {
+                _RefreshWorker.RunWorkerAsync();
+
+                msg = $"[{pd.PR_NAME} ({pd.NEW_VER})] Success to {command}";
+                MessageBox.Show(msg, "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                msg = $"[{pd.PR_NAME} ({pd.NEW_VER})] Failed to {command}";
+                MessageBox.Show(msg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
         }
 
         #endregion "Events End "
