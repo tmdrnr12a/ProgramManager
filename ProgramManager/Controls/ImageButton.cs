@@ -23,7 +23,7 @@ namespace ProgramManager.Controls
             this.MouseLeave += (sender, e) => { this.BackgroundImage = this.IMAGE_DEFAULT; };
 
             this.BackgroundImage = this.IMAGE_DEFAULT;
-            this.BackgroundImageLayout = ImageLayout.Center;
+            this.BackgroundImageLayout = ImageLayout.Zoom;
         }
     }
 }

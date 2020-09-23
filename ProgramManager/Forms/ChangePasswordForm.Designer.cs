@@ -35,22 +35,25 @@
             this.uiTxt_CurrentPassword = new System.Windows.Forms.TextBox();
             this.uiTxt_ChangePassword = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.uiBtn_Save = new ProgramManager.Controls.ImageButton();
+            this.uiBtn_Save = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.panel1.Location = new System.Drawing.Point(20, 34);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(330, 1);
+            this.panel1.Size = new System.Drawing.Size(290, 1);
             this.panel1.TabIndex = 13;
             // 
             // uiLab_UserID
             // 
             this.uiLab_UserID.AutoSize = true;
             this.uiLab_UserID.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold);
+            this.uiLab_UserID.ForeColor = System.Drawing.Color.Black;
             this.uiLab_UserID.Location = new System.Drawing.Point(38, 16);
             this.uiLab_UserID.Name = "uiLab_UserID";
             this.uiLab_UserID.Size = new System.Drawing.Size(32, 14);
@@ -60,6 +63,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(24, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(107, 12);
@@ -69,6 +73,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.Black;
             this.label2.Location = new System.Drawing.Point(24, 82);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(110, 12);
@@ -103,16 +108,20 @@
             // 
             // uiBtn_Save
             // 
-            this.uiBtn_Save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.uiBtn_Save.Location = new System.Drawing.Point(256, 45);
+            this.uiBtn_Save.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.uiBtn_Save.ForeColor = System.Drawing.Color.Green;
+            this.uiBtn_Save.Location = new System.Drawing.Point(254, 45);
             this.uiBtn_Save.Name = "uiBtn_Save";
-            this.uiBtn_Save.Size = new System.Drawing.Size(94, 53);
-            this.uiBtn_Save.TabIndex = 19;
+            this.uiBtn_Save.Size = new System.Drawing.Size(51, 53);
+            this.uiBtn_Save.TabIndex = 21;
+            this.uiBtn_Save.Text = "Save";
+            this.uiBtn_Save.UseVisualStyleBackColor = true;
             // 
             // ChangePasswordForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(370, 117);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(330, 117);
             this.Controls.Add(this.uiBtn_Save);
             this.Controls.Add(this.uiTxt_ChangePassword);
             this.Controls.Add(this.uiTxt_CurrentPassword);
@@ -141,6 +150,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox uiTxt_CurrentPassword;
         private System.Windows.Forms.TextBox uiTxt_ChangePassword;
-        private Controls.ImageButton uiBtn_Save;
+        private System.Windows.Forms.Button uiBtn_Save;
     }
 }

@@ -127,19 +127,19 @@ namespace ProgramManager
             uiBtn_Close.IMAGE_CLICK = Properties.Resources.CloseButtonClick2;
 
             // Program Button
-            //uiBtn_Program.IMAGE_DEFAULT = Properties.Resources;
-            //uiBtn_Program.IMAGE_FOCUS = Properties.Resources;
-            //uiBtn_Program.IMAGE_CLICK = Properties.Resources;
+            uiBtn_Program.IMAGE_DEFAULT = Properties.Resources.DocumentDefault;
+            uiBtn_Program.IMAGE_FOCUS = Properties.Resources.DocumentFocus;
+            uiBtn_Program.IMAGE_CLICK = Properties.Resources.DocumentClick;
 
             // UserManagement or Password Button
-            //uiBtn_UserManagement.IMAGE_DEFAULT = Properties.Resources;
-            //uiBtn_UserManagement.IMAGE_FOCUS = Properties.Resources;
-            //uiBtn_UserManagement.IMAGE_CLICK = Properties.Resources;
+            uiBtn_UserManagement.IMAGE_DEFAULT = Properties.Resources.UserDefault;
+            uiBtn_UserManagement.IMAGE_FOCUS = Properties.Resources.UserFocus;
+            uiBtn_UserManagement.IMAGE_CLICK = Properties.Resources.UserClick;
 
             // Config Button
-            //uiBtn_Config.IMAGE_DEFAULT = Properties.Resources;
-            //uiBtn_Config.IMAGE_FOCUS = Properties.Resources;
-            //uiBtn_Config.IMAGE_CLICK = Properties.Resources;
+            uiBtn_Config.IMAGE_DEFAULT = Properties.Resources.ConfigDefault;
+            uiBtn_Config.IMAGE_FOCUS = Properties.Resources.ConfigFocus;
+            uiBtn_Config.IMAGE_CLICK = Properties.Resources.ConfigClickjpg;
         }
 
         private bool ConnectToFTP()
@@ -468,10 +468,10 @@ namespace ProgramManager
 
             try
             {
-                if (File.Exists(descFullPath) == true)
-                    uiRtb_Description.LoadFile(descFullPath, RichTextBoxStreamType.RichText);
-                else
-                    uiRtb_Description.Clear();
+                //if (File.Exists(descFullPath) == true)
+                //    uiRtb_Description.LoadFile(descFullPath, RichTextBoxStreamType.RichText);
+                //else
+                //    uiRtb_Description.Clear();
             }
             catch (Exception ex)
             {

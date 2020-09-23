@@ -1,4 +1,5 @@
-﻿using ProgramManager.Managers;
+﻿using ProgramManager.Forms;
+using ProgramManager.Managers;
 using System;
 using System.Diagnostics;
 using System.Windows.Forms;
@@ -31,6 +32,11 @@ namespace ProgramManager
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
+
+            Application.Run(new ProgramForm());
+            return;
+
+
 
             MainForm frm = new MainForm();
             frm.ShowDialog();

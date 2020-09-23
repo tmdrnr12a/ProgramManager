@@ -19,15 +19,15 @@ namespace ProgramManager.Forms
 
         #region " Create & Load & Shown "
 
-        public ProgramHistoryForm(MainForm frm, string PR_NAME)
+        public ProgramHistoryForm()
         {
             InitializeComponent();
 
-            this.frm = frm;
-            this.PR_NAME = PR_NAME;
+            //this.frm = frm;
+            //this.PR_NAME = PR_NAME;
             lbl_ProgramName.Text = String.Format(" {0} ", PR_NAME);
 
-            backupPath = backupPath.Replace("{0}", Function.DEPT.ToString());
+            //backupPath = backupPath.Replace("{0}", Function.DEPT.ToString());
             backupPath = backupPath.Replace("{1}", PR_NAME);
 
             this.Load += UpdateHistory_Load;
@@ -50,28 +50,28 @@ namespace ProgramManager.Forms
 
         private void GetVersionList(string backupPath)
         {
-            // 해당 FTP 경로로 들어가서 Version List 읽어오기 
-            string ftpUser = XmlManager.GetValue("FTP_APP", "USER");
-            string ftpPWD = XmlManager.GetValue("FTP_APP", "PWD");
+            //// 해당 FTP 경로로 들어가서 Version List 읽어오기 
+            //string ftpUser = XmlManager.GetValue("FTP_APP", "USER");
+            //string ftpPWD = XmlManager.GetValue("FTP_APP", "PWD");
 
-            List<string> versionList = Function.GetVersionList(backupPath);
+            //List<string> versionList = Function.GetVersionList(backupPath);
 
-            // ListView에 추가하기
-            foreach (string version in versionList)
-            {
-                ListViewItem item = new ListViewItem(version);
-                lv_Version.Items.Add(item);
-            }
+            //// ListView에 추가하기
+            //foreach (string version in versionList)
+            //{
+            //    ListViewItem item = new ListViewItem(version);
+            //    lv_Version.Items.Add(item);
+            //}
         }
 
         private void SetDescription(string version)
         {
-            string rtfPath = GetFTPDescription(PR_NAME + @"\backup\" + version + @"\" + frm.descFile, version);
+            //string rtfPath = GetFTPDescription(PR_NAME + @"\backup\" + version + @"\" + frm.descFile, version);
 
-            if (System.IO.File.Exists(rtfPath) == true)
-                rtb_Description.LoadFile(rtfPath, RichTextBoxStreamType.PlainText);
-            else
-                rtb_Description.Clear();
+            //if (System.IO.File.Exists(rtfPath) == true)
+            //    rtb_Description.LoadFile(rtfPath, RichTextBoxStreamType.PlainText);
+            //else
+            //    rtb_Description.Clear();
         }
 
         private string GetFTPDescription(string fileName, string version)
@@ -87,20 +87,20 @@ namespace ProgramManager.Forms
                 tmpPath = tmpPath.Replace("PROGRAM", program);
                 tmpPath = tmpPath.Replace("FILE", file);
 
-                bool same = Function.CompareModifyTime(tmpPath, fileName);
+                //bool same = Function.CompareModifyTime(tmpPath, fileName);
 
-                // 다르면 로컬에 다운받기
-                if (same == false)
-                {
-                    if (FTPManager.Instance.DownLoad(tmpPath, fileName) == true)
-                    {
-                        if (System.IO.File.Exists(tmpPath) == true)
-                            path = tmpPath;
-                    }
-                }
-                // 같으면 로컬 파일의 정보 읽기
-                else
-                    path = tmpPath;
+                //// 다르면 로컬에 다운받기
+                //if (same == false)
+                //{
+                //    if (FTPManager.Instance.DownLoad(tmpPath, fileName) == true)
+                //    {
+                //        if (System.IO.File.Exists(tmpPath) == true)
+                //            path = tmpPath;
+                //    }
+                //}
+                //// 같으면 로컬 파일의 정보 읽기
+                //else
+                //    path = tmpPath;
             }
             catch { }
 
@@ -124,33 +124,33 @@ namespace ProgramManager.Forms
         {
             if (lv_Version.SelectedIndices.Count != 0)
             {
-                if (frm.CheckExecuting(PR_NAME) == true)
-                    return;
+                //if (frm.CheckExecuting(PR_NAME) == true)
+                //    return;
 
-                this.Cursor = Cursors.WaitCursor;
+                //this.Cursor = Cursors.WaitCursor;
 
-                LoadingProcessor.Start(this);
-                LoadingProcessor.SetDescription("Program restore is in progress...");
+                //LoadingProcessor.Start(this);
+                //LoadingProcessor.SetDescription("Program restore is in progress...");
 
-                string selectedVersion = lv_Version.SelectedItems[0].Text;
-                string localFolder = frm.localPath + @"\" + PR_NAME;
+                //string selectedVersion = lv_Version.SelectedItems[0].Text;
+                //string localFolder = frm.localPath + @"\" + PR_NAME;
 
-                bool result = Function.Download(localFolder, backupPath + @"\" + selectedVersion);
+                //bool result = Function.Download(localFolder, backupPath + @"\" + selectedVersion);
 
-                LoadingProcessor.End();
+                //LoadingProcessor.End();
 
-                if (result == true)
-                {
-                    frm.FormRefreshThread();
+                //if (result == true)
+                //{
+                //    frm.FormRefreshThread();
 
-                    MessageBox.Show("Restore Completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //    MessageBox.Show("Restore Completed.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    this.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Failed to restore.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                }
+                //    this.Close();
+                //}
+                //else
+                //{
+                //    MessageBox.Show("Failed to restore.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                //}
 
                 this.Cursor = Cursors.Default;
             }
@@ -164,7 +164,7 @@ namespace ProgramManager.Forms
         {
             try
             {
-                pnl_Restore.BackgroundImage = TMS_Manager.Properties.Resources.btnRestoreDefault;
+                //pnl_Restore.BackgroundImage = TMS_Manager.Properties.Resources.btnRestoreDefault;
             }
             catch { }
         }
@@ -173,7 +173,7 @@ namespace ProgramManager.Forms
         {
             try
             {
-                pnl_Restore.BackgroundImage = TMS_Manager.Properties.Resources.btnRestoreSelected;
+                //pnl_Restore.BackgroundImage = TMS_Manager.Properties.Resources.btnRestoreSelected;
             }
             catch { }
         }

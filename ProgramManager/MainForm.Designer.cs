@@ -35,15 +35,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.uiRtb_Description = new System.Windows.Forms.RichTextBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.uiPnl_AppName = new System.Windows.Forms.Panel();
             this.uiLab_AppNewVersion = new System.Windows.Forms.Label();
             this.uiLab_AppCurVersion = new System.Windows.Forms.Label();
             this.uiLab_AppName = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.uiPnl_Title = new System.Windows.Forms.Panel();
             this.uiLab_Title = new System.Windows.Forms.Label();
             this.uiLab_Version = new System.Windows.Forms.Label();
@@ -69,6 +66,9 @@
             this.uiImageList_Install = new System.Windows.Forms.ImageList(this.components);
             this.uiImageList_Update = new System.Windows.Forms.ImageList(this.components);
             this.uiImageList_Download = new System.Windows.Forms.ImageList(this.components);
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.uiBtn_History = new ProgramManager.Controls.ImageButton();
             this.uiBtn_Close = new ProgramManager.Controls.ImageButton();
             this.uiBtn_Minimization = new ProgramManager.Controls.ImageButton();
@@ -79,16 +79,16 @@
             this.uiPnl_AppInfo.SuspendLayout();
             this.uiPnl_Description.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.uiPnl_AppName.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.uiPnl_Title.SuspendLayout();
             this.uiPnl_Option.SuspendLayout();
             this.uiTlp_App.SuspendLayout();
             this.uiPnl_Installed.SuspendLayout();
             this.uiPnl_Update.SuspendLayout();
             this.uiPnl_Download.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // uiTlp_Main
@@ -170,16 +170,6 @@
             this.label13.TabIndex = 9;
             this.label13.Text = "Detail Description";
             // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackgroundImage = global::ProgramManager.Properties.Resources.RedPoint;
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox5.Location = new System.Drawing.Point(20, 14);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(10, 12);
-            this.pictureBox5.TabIndex = 8;
-            this.pictureBox5.TabStop = false;
-            // 
             // uiPnl_AppName
             // 
             this.uiPnl_AppName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -240,16 +230,6 @@
             this.label9.TabIndex = 3;
             this.label9.Text = "Version ";
             // 
-            // pictureBox4
-            // 
-            this.pictureBox4.BackgroundImage = global::ProgramManager.Properties.Resources.RedPoint;
-            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox4.Location = new System.Drawing.Point(20, 40);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(10, 12);
-            this.pictureBox4.TabIndex = 2;
-            this.pictureBox4.TabStop = false;
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
@@ -259,16 +239,6 @@
             this.label8.Size = new System.Drawing.Size(51, 12);
             this.label8.TabIndex = 1;
             this.label8.Text = "Name   ";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImage = global::ProgramManager.Properties.Resources.RedPoint;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox3.Location = new System.Drawing.Point(20, 13);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(10, 12);
-            this.pictureBox3.TabIndex = 0;
-            this.pictureBox3.TabStop = false;
             // 
             // uiPnl_Title
             // 
@@ -568,56 +538,95 @@
             this.uiImageList_Download.ImageSize = new System.Drawing.Size(48, 48);
             this.uiImageList_Download.TransparentColor = System.Drawing.Color.Transparent;
             // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = global::ProgramManager.Properties.Resources.RedPoint;
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox5.Location = new System.Drawing.Point(20, 14);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(10, 12);
+            this.pictureBox5.TabIndex = 8;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackgroundImage = global::ProgramManager.Properties.Resources.RedPoint;
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox4.Location = new System.Drawing.Point(20, 40);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(10, 12);
+            this.pictureBox4.TabIndex = 2;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = global::ProgramManager.Properties.Resources.RedPoint;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox3.Location = new System.Drawing.Point(20, 13);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(10, 12);
+            this.pictureBox3.TabIndex = 0;
+            this.pictureBox3.TabStop = false;
+            // 
             // uiBtn_History
             // 
+            this.uiBtn_History.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBtn_History.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.uiBtn_History.Location = new System.Drawing.Point(874, 0);
+            this.uiBtn_History.Location = new System.Drawing.Point(916, 0);
             this.uiBtn_History.Name = "uiBtn_History";
-            this.uiBtn_History.Size = new System.Drawing.Size(100, 60);
+            this.uiBtn_History.Size = new System.Drawing.Size(58, 58);
             this.uiBtn_History.TabIndex = 9;
             // 
             // uiBtn_Close
             // 
+            this.uiBtn_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBtn_Close.BackgroundImage = global::ProgramManager.Properties.Resources.CloseButtonDefault;
             this.uiBtn_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_Close.Location = new System.Drawing.Point(925, 0);
+            this.uiBtn_Close.Location = new System.Drawing.Point(927, 0);
             this.uiBtn_Close.Name = "uiBtn_Close";
-            this.uiBtn_Close.Size = new System.Drawing.Size(50, 38);
+            this.uiBtn_Close.Size = new System.Drawing.Size(48, 38);
             this.uiBtn_Close.TabIndex = 12;
             // 
             // uiBtn_Minimization
             // 
+            this.uiBtn_Minimization.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBtn_Minimization.BackgroundImage = global::ProgramManager.Properties.Resources.MinimizationButtonDefault;
             this.uiBtn_Minimization.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_Minimization.Location = new System.Drawing.Point(875, 0);
+            this.uiBtn_Minimization.Location = new System.Drawing.Point(880, 0);
             this.uiBtn_Minimization.Name = "uiBtn_Minimization";
-            this.uiBtn_Minimization.Size = new System.Drawing.Size(50, 38);
+            this.uiBtn_Minimization.Size = new System.Drawing.Size(48, 38);
             this.uiBtn_Minimization.TabIndex = 11;
             // 
             // uiBtn_Config
             // 
+            this.uiBtn_Config.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBtn_Config.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.uiBtn_Config.BackgroundImage = global::ProgramManager.Properties.Resources.ConfigDefault;
             this.uiBtn_Config.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_Config.Location = new System.Drawing.Point(915, 1);
+            this.uiBtn_Config.Location = new System.Drawing.Point(927, 0);
             this.uiBtn_Config.Name = "uiBtn_Config";
-            this.uiBtn_Config.Size = new System.Drawing.Size(60, 46);
+            this.uiBtn_Config.Size = new System.Drawing.Size(48, 48);
             this.uiBtn_Config.TabIndex = 24;
             // 
             // uiBtn_UserManagement
             // 
+            this.uiBtn_UserManagement.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBtn_UserManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.uiBtn_UserManagement.BackgroundImage = global::ProgramManager.Properties.Resources.UserDefault;
             this.uiBtn_UserManagement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_UserManagement.Location = new System.Drawing.Point(855, 1);
+            this.uiBtn_UserManagement.Location = new System.Drawing.Point(880, 0);
             this.uiBtn_UserManagement.Name = "uiBtn_UserManagement";
-            this.uiBtn_UserManagement.Size = new System.Drawing.Size(60, 46);
+            this.uiBtn_UserManagement.Size = new System.Drawing.Size(48, 48);
             this.uiBtn_UserManagement.TabIndex = 23;
             // 
             // uiBtn_Program
             // 
+            this.uiBtn_Program.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBtn_Program.BackgroundImage = global::ProgramManager.Properties.Resources.DocumentDefault;
             this.uiBtn_Program.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_Program.Location = new System.Drawing.Point(795, 1);
+            this.uiBtn_Program.Location = new System.Drawing.Point(833, 0);
             this.uiBtn_Program.Name = "uiBtn_Program";
-            this.uiBtn_Program.Size = new System.Drawing.Size(60, 46);
+            this.uiBtn_Program.Size = new System.Drawing.Size(48, 48);
             this.uiBtn_Program.TabIndex = 22;
             // 
             // MainForm
@@ -634,11 +643,8 @@
             this.uiPnl_Description.ResumeLayout(false);
             this.uiPnl_Description.PerformLayout();
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.uiPnl_AppName.ResumeLayout(false);
             this.uiPnl_AppName.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.uiPnl_Title.ResumeLayout(false);
             this.uiPnl_Title.PerformLayout();
             this.uiPnl_Option.ResumeLayout(false);
@@ -647,6 +653,9 @@
             this.uiPnl_Installed.ResumeLayout(false);
             this.uiPnl_Update.ResumeLayout(false);
             this.uiPnl_Download.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }

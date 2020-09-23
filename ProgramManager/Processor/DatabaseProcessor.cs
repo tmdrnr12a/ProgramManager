@@ -13,6 +13,16 @@ namespace ProgramManager.Processor
 {
     class DatabaseProcessor : Singleton<DatabaseProcessor>
     {
+        #region " Variables "
+
+        #endregion " Variables End "
+
+        #region " Create & Load & Shown "
+
+        #endregion " Create & Load Shown End "
+
+        #region "  Methods "
+
         public bool Login(string id, string pwd)
         {
             bool result = true;
@@ -108,7 +118,7 @@ ORDER BY PR_NAME ASC
                         PR_NAME = ds.Tables[0].Rows[i]["PR_NAME"].ToString(),
                         PR_PATH = ds.Tables[0].Rows[i]["PR_PATH"].ToString(),
                         PR_FILE = ds.Tables[0].Rows[i]["PR_FILE"].ToString(),
-                        
+
                     };
 
                     try
@@ -182,5 +192,39 @@ AND USER_ID = '#USER_ID'
 
             return result;
         }
+
+        public DataSet GetAllProgramData()
+        {
+            string query =
+@"
+SELECT 
+    PR_ID AS ID, 
+    PR_NAME AS NAME, 
+    PR_ICON AS ICON, 
+    PR_PATH AS PATH, 
+    PR_FILE AS FILE
+FROM PSK_DB.PM_PROGRAM_INFO
+ORDER BY PR_NAME ASC
+";
+            DataSet ds = new DataSet();
+
+            try
+            {
+                MysqlManager.Instance.ExecuteDsQuery(ds, query);
+            }
+            catch (Exception ex)
+            {
+                ds = null;
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return ds;
+        }
+
+        #endregion "  Methods End "
+
+        #region " Events "
+
+        #endregion "Events End "
     }
 }

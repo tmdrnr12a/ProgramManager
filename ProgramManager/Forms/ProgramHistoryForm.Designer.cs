@@ -54,6 +54,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(103, 51);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(121, 12);
@@ -64,6 +65,7 @@
             // 
             this.lb_Version.AutoSize = true;
             this.lb_Version.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold);
+            this.lb_Version.ForeColor = System.Drawing.Color.White;
             this.lb_Version.Location = new System.Drawing.Point(22, 51);
             this.lb_Version.Name = "lb_Version";
             this.lb_Version.Size = new System.Drawing.Size(55, 12);
@@ -128,6 +130,7 @@
             // 
             this.lbl_ProgramName.AutoSize = true;
             this.lbl_ProgramName.Font = new System.Drawing.Font("굴림", 10F, System.Drawing.FontStyle.Bold);
+            this.lbl_ProgramName.ForeColor = System.Drawing.Color.White;
             this.lbl_ProgramName.Location = new System.Drawing.Point(38, 12);
             this.lbl_ProgramName.Name = "lbl_ProgramName";
             this.lbl_ProgramName.Size = new System.Drawing.Size(32, 14);
@@ -137,6 +140,7 @@
             // ProgramHistoryForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.ClientSize = new System.Drawing.Size(501, 327);
             this.Controls.Add(this.lbl_ProgramName);
             this.Controls.Add(this.panel1);
@@ -145,7 +149,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lb_Version);
             this.Controls.Add(this.pnl_ListView);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(517, 366);
             this.MinimizeBox = false;

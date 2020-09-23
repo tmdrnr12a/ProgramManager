@@ -30,24 +30,24 @@
         {
             this.uiTlp_Main = new System.Windows.Forms.TableLayoutPanel();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.uiBtn_Delete = new ProgramManager.Controls.ImageButton();
-            this.uiBtn_Add = new ProgramManager.Controls.ImageButton();
             this.label1 = new System.Windows.Forms.Label();
-            this.uiBtn_Save = new ProgramManager.Controls.ImageButton();
+            this.uiBtn_Add = new ProgramManager.Controls.ImageButton();
+            this.uiBtn_Delete = new ProgramManager.Controls.ImageButton();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.uiDGV_User = new System.Windows.Forms.DataGridView();
+            this.uiBtn_Save = new ProgramManager.Controls.ImageButton();
             this.uiDGV_Program = new System.Windows.Forms.DataGridView();
+            this.uiDGV_User = new System.Windows.Forms.DataGridView();
             this.uiTlp_Main.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.uiDGV_User)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiDGV_Program)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiDGV_User)).BeginInit();
             this.SuspendLayout();
             // 
             // uiTlp_Main
             // 
-            this.uiTlp_Main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.uiTlp_Main.BackColor = System.Drawing.SystemColors.Control;
             this.uiTlp_Main.ColumnCount = 2;
             this.uiTlp_Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 57.125F));
             this.uiTlp_Main.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 42.875F));
@@ -76,37 +76,6 @@
             this.panel1.Size = new System.Drawing.Size(457, 50);
             this.panel1.TabIndex = 0;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.uiBtn_Save);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(457, 0);
-            this.panel2.Margin = new System.Windows.Forms.Padding(0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(343, 50);
-            this.panel2.TabIndex = 1;
-            // 
-            // uiBtn_Delete
-            // 
-            this.uiBtn_Delete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.uiBtn_Delete.Dock = System.Windows.Forms.DockStyle.Right;
-            this.uiBtn_Delete.Location = new System.Drawing.Point(401, 0);
-            this.uiBtn_Delete.Margin = new System.Windows.Forms.Padding(0);
-            this.uiBtn_Delete.Name = "uiBtn_Delete";
-            this.uiBtn_Delete.Size = new System.Drawing.Size(56, 50);
-            this.uiBtn_Delete.TabIndex = 0;
-            // 
-            // uiBtn_Add
-            // 
-            this.uiBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.uiBtn_Add.Dock = System.Windows.Forms.DockStyle.Right;
-            this.uiBtn_Add.Location = new System.Drawing.Point(345, 0);
-            this.uiBtn_Add.Margin = new System.Windows.Forms.Padding(0);
-            this.uiBtn_Add.Name = "uiBtn_Add";
-            this.uiBtn_Add.Size = new System.Drawing.Size(56, 50);
-            this.uiBtn_Add.TabIndex = 1;
-            // 
             // label1
             // 
             this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
@@ -120,15 +89,36 @@
             this.label1.Text = "User Information";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiBtn_Save
+            // uiBtn_Add
             // 
-            this.uiBtn_Save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.uiBtn_Save.Dock = System.Windows.Forms.DockStyle.Right;
-            this.uiBtn_Save.Location = new System.Drawing.Point(287, 0);
-            this.uiBtn_Save.Margin = new System.Windows.Forms.Padding(0);
-            this.uiBtn_Save.Name = "uiBtn_Save";
-            this.uiBtn_Save.Size = new System.Drawing.Size(56, 50);
-            this.uiBtn_Save.TabIndex = 1;
+            this.uiBtn_Add.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.uiBtn_Add.Dock = System.Windows.Forms.DockStyle.Right;
+            this.uiBtn_Add.Location = new System.Drawing.Point(345, 0);
+            this.uiBtn_Add.Margin = new System.Windows.Forms.Padding(0);
+            this.uiBtn_Add.Name = "uiBtn_Add";
+            this.uiBtn_Add.Size = new System.Drawing.Size(56, 50);
+            this.uiBtn_Add.TabIndex = 1;
+            // 
+            // uiBtn_Delete
+            // 
+            this.uiBtn_Delete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.uiBtn_Delete.Dock = System.Windows.Forms.DockStyle.Right;
+            this.uiBtn_Delete.Location = new System.Drawing.Point(401, 0);
+            this.uiBtn_Delete.Margin = new System.Windows.Forms.Padding(0);
+            this.uiBtn_Delete.Name = "uiBtn_Delete";
+            this.uiBtn_Delete.Size = new System.Drawing.Size(56, 50);
+            this.uiBtn_Delete.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.uiBtn_Save);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(457, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(343, 50);
+            this.panel2.TabIndex = 1;
             // 
             // label2
             // 
@@ -143,19 +133,19 @@
             this.label2.Text = "Available Program";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // uiDGV_User
+            // uiBtn_Save
             // 
-            this.uiDGV_User.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.uiDGV_User.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiDGV_User.Location = new System.Drawing.Point(0, 50);
-            this.uiDGV_User.Margin = new System.Windows.Forms.Padding(0);
-            this.uiDGV_User.Name = "uiDGV_User";
-            this.uiDGV_User.RowTemplate.Height = 23;
-            this.uiDGV_User.Size = new System.Drawing.Size(457, 400);
-            this.uiDGV_User.TabIndex = 2;
+            this.uiBtn_Save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.uiBtn_Save.Dock = System.Windows.Forms.DockStyle.Right;
+            this.uiBtn_Save.Location = new System.Drawing.Point(287, 0);
+            this.uiBtn_Save.Margin = new System.Windows.Forms.Padding(0);
+            this.uiBtn_Save.Name = "uiBtn_Save";
+            this.uiBtn_Save.Size = new System.Drawing.Size(56, 50);
+            this.uiBtn_Save.TabIndex = 1;
             // 
             // uiDGV_Program
             // 
+            this.uiDGV_Program.BackgroundColor = System.Drawing.SystemColors.Control;
             this.uiDGV_Program.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.uiDGV_Program.Dock = System.Windows.Forms.DockStyle.Fill;
             this.uiDGV_Program.Location = new System.Drawing.Point(457, 50);
@@ -164,6 +154,18 @@
             this.uiDGV_Program.RowTemplate.Height = 23;
             this.uiDGV_Program.Size = new System.Drawing.Size(343, 400);
             this.uiDGV_Program.TabIndex = 3;
+            // 
+            // uiDGV_User
+            // 
+            this.uiDGV_User.BackgroundColor = System.Drawing.SystemColors.Control;
+            this.uiDGV_User.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.uiDGV_User.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiDGV_User.Location = new System.Drawing.Point(0, 50);
+            this.uiDGV_User.Margin = new System.Windows.Forms.Padding(0);
+            this.uiDGV_User.Name = "uiDGV_User";
+            this.uiDGV_User.RowTemplate.Height = 23;
+            this.uiDGV_User.Size = new System.Drawing.Size(457, 400);
+            this.uiDGV_User.TabIndex = 2;
             // 
             // UserManagementForm
             // 
@@ -176,8 +178,8 @@
             this.uiTlp_Main.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.uiDGV_User)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.uiDGV_Program)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.uiDGV_User)).EndInit();
             this.ResumeLayout(false);
 
         }
