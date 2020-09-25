@@ -1,4 +1,4 @@
-# ProgramManager (C# / Mysql / FarPointSpread)
+# ProgramManager (Mysql / FarPointSpread)
 
 1. Program Management
     - Excuete/Update/Download/Restore program
