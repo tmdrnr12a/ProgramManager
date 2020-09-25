@@ -63,6 +63,16 @@ namespace ProgramManager.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
+        internal static System.Drawing.Bitmap AddDefault {
+            get {
+                object obj = ResourceManager.GetObject("AddDefault", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
         internal static System.Drawing.Bitmap CloseButtonClick {
             get {
                 object obj = ResourceManager.GetObject("CloseButtonClick", resourceCulture);
@@ -133,9 +143,9 @@ namespace ProgramManager.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap DocumentClick {
+        internal static System.Drawing.Bitmap DeleteDefault {
             get {
-                object obj = ResourceManager.GetObject("DocumentClick", resourceCulture);
+                object obj = ResourceManager.GetObject("DeleteDefault", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -143,9 +153,9 @@ namespace ProgramManager.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap DocumentDefault {
+        internal static System.Drawing.Bitmap HistoryClick {
             get {
-                object obj = ResourceManager.GetObject("DocumentDefault", resourceCulture);
+                object obj = ResourceManager.GetObject("HistoryClick", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -153,9 +163,19 @@ namespace ProgramManager.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap DocumentFocus {
+        internal static System.Drawing.Bitmap HistoryDefault {
             get {
-                object obj = ResourceManager.GetObject("DocumentFocus", resourceCulture);
+                object obj = ResourceManager.GetObject("HistoryDefault", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
+        /// </summary>
+        internal static System.Drawing.Bitmap HistoryFocus {
+            get {
+                object obj = ResourceManager.GetObject("HistoryFocus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -253,9 +273,9 @@ namespace ProgramManager.Properties {
         /// <summary>
         ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
         /// </summary>
-        internal static System.Drawing.Bitmap SaveClick {
+        internal static System.Drawing.Bitmap RestoreDefault {
             get {
-                object obj = ResourceManager.GetObject("SaveClick", resourceCulture);
+                object obj = ResourceManager.GetObject("RestoreDefault", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -266,16 +286,6 @@ namespace ProgramManager.Properties {
         internal static System.Drawing.Bitmap SaveDefault {
             get {
                 object obj = ResourceManager.GetObject("SaveDefault", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   System.Drawing.Bitmap 형식의 지역화된 리소스를 찾습니다.
-        /// </summary>
-        internal static System.Drawing.Bitmap SaveFocus {
-            get {
-                object obj = ResourceManager.GetObject("SaveFocus", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

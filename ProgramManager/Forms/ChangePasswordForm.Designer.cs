@@ -35,7 +35,7 @@
             this.uiTxt_CurrentPassword = new System.Windows.Forms.TextBox();
             this.uiTxt_ChangePassword = new System.Windows.Forms.TextBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.uiBtn_Save = new System.Windows.Forms.Button();
+            this.uiBtn_Save = new ProgramManager.Controls.ImageButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
@@ -46,7 +46,7 @@
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.panel1.Location = new System.Drawing.Point(20, 34);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(290, 1);
+            this.panel1.Size = new System.Drawing.Size(340, 1);
             this.panel1.TabIndex = 13;
             // 
             // uiLab_UserID
@@ -82,7 +82,7 @@
             // 
             // uiTxt_CurrentPassword
             // 
-            this.uiTxt_CurrentPassword.Location = new System.Drawing.Point(148, 45);
+            this.uiTxt_CurrentPassword.Location = new System.Drawing.Point(141, 45);
             this.uiTxt_CurrentPassword.Name = "uiTxt_CurrentPassword";
             this.uiTxt_CurrentPassword.PasswordChar = '*';
             this.uiTxt_CurrentPassword.Size = new System.Drawing.Size(100, 21);
@@ -90,9 +90,10 @@
             // 
             // uiTxt_ChangePassword
             // 
-            this.uiTxt_ChangePassword.Location = new System.Drawing.Point(148, 77);
+            this.uiTxt_ChangePassword.Location = new System.Drawing.Point(141, 77);
             this.uiTxt_ChangePassword.MaxLength = 16;
             this.uiTxt_ChangePassword.Name = "uiTxt_ChangePassword";
+            this.uiTxt_ChangePassword.PasswordChar = '*';
             this.uiTxt_ChangePassword.Size = new System.Drawing.Size(100, 21);
             this.uiTxt_ChangePassword.TabIndex = 18;
             // 
@@ -108,20 +109,18 @@
             // 
             // uiBtn_Save
             // 
-            this.uiBtn_Save.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.uiBtn_Save.ForeColor = System.Drawing.Color.Green;
-            this.uiBtn_Save.Location = new System.Drawing.Point(254, 45);
+            this.uiBtn_Save.BackgroundImage = global::ProgramManager.Properties.Resources.SaveDefault;
+            this.uiBtn_Save.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.uiBtn_Save.Location = new System.Drawing.Point(246, 45);
             this.uiBtn_Save.Name = "uiBtn_Save";
-            this.uiBtn_Save.Size = new System.Drawing.Size(51, 53);
-            this.uiBtn_Save.TabIndex = 21;
-            this.uiBtn_Save.Text = "Save";
-            this.uiBtn_Save.UseVisualStyleBackColor = true;
+            this.uiBtn_Save.Size = new System.Drawing.Size(106, 55);
+            this.uiBtn_Save.TabIndex = 19;
             // 
             // ChangePasswordForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(330, 117);
+            this.ClientSize = new System.Drawing.Size(380, 117);
             this.Controls.Add(this.uiBtn_Save);
             this.Controls.Add(this.uiTxt_ChangePassword);
             this.Controls.Add(this.uiTxt_CurrentPassword);
@@ -150,6 +149,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox uiTxt_CurrentPassword;
         private System.Windows.Forms.TextBox uiTxt_ChangePassword;
-        private System.Windows.Forms.Button uiBtn_Save;
+        private Controls.ImageButton uiBtn_Save;
     }
 }

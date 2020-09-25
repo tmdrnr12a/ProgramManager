@@ -81,12 +81,6 @@
     <Compile Include="Forms\ConfigForm.Designer.cs">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ProgramForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\ProgramForm.Designer.cs">
-      <DependentUpon>ProgramForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\ProgramHistoryForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,7 +111,6 @@
     <Compile Include="Models\ProgramData.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Processor\DatabaseProcessor.cs" />
-    <Compile Include="Processor\ParsingProcessor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Etc\Singleton.cs" />
@@ -136,9 +129,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\ProgramForm.resx">
-      <DependentUpon>ProgramForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\ProgramHistoryForm.resx">
       <DependentUpon>ProgramHistoryForm.cs</DependentUpon>
@@ -196,21 +186,21 @@
     <None Include="Resources\LoginButtonEnable.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="kjvdat.txt" />
     <Content Include="References\FarPoint.Win.dll" />
     <Content Include="References\FarPoint.Win.Spread.Design.dll" />
     <Content Include="References\FarPoint.Win.Spread.dll" />
     <Content Include="References\MySql.Data.dll" />
-    <None Include="Resources\SaveClick.jpg" />
-    <None Include="Resources\SaveFocus.jpg" />
+    <None Include="Resources\HistoryFocus.jpg" />
+    <None Include="Resources\HistoryDefault.jpg" />
+    <None Include="Resources\HistoryClick.jpg" />
+    <None Include="Resources\RestoreDefault.jpg" />
     <None Include="Resources\SaveDefault.jpg" />
-    <None Include="Resources\DocumentFocus.jpg" />
-    <None Include="Resources\DocumentClick.jpg" />
+    <None Include="Resources\DeleteDefault.jpg" />
+    <None Include="Resources\AddDefault.jpg" />
     <None Include="Resources\NotFoundImage.jpg" />
     <None Include="Resources\ConfigClickjpg.jpg" />
     <None Include="Resources\ConfigDefault.jpg" />
     <None Include="Resources\ConfigFocus.jpg" />
-    <None Include="Resources\DocumentDefault.jpg" />
     <None Include="Resources\UserFocus.jpg" />
     <None Include="Resources\UserDefault.jpg" />
     <None Include="Resources\UserClick.jpg" />

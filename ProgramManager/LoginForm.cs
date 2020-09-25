@@ -1,8 +1,10 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Data;
 using System.Drawing;
 using System.Windows.Forms;
 using ProgramManager.Manager;
+using ProgramManager.Models;
 using ProgramManager.Processor;
 
 namespace ProgramManager
@@ -10,6 +12,8 @@ namespace ProgramManager
     public partial class LoginForm : Form
     {
         #region " Variables "
+
+        public User _User = null;
 
         private BackgroundWorker ConnectWorker = null;
 
@@ -141,8 +145,22 @@ namespace ProgramManager
             if (CheckUserInfo(id, pwd) == false)
                 return;
 
-            if (DatabaseProcessor.Instance.Login(id, pwd) == true)
+            DataSet ds = DatabaseProcessor.Instance.LoginInfo(id, pwd);
+
+            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+            {
+                _User = new User()
+                {
+                    ID = ds.Tables[0].Rows[0]["USER_ID"].ToString(),
+                    PWD = ds.Tables[0].Rows[0]["USER_PWD"].ToString(),
+                    TYPE = ds.Tables[0].Rows[0]["USER_TYPE"].ToString(),
+                    NAME = ds.Tables[0].Rows[0]["USER_NAME"].ToString(),
+                    PROGRAM = ds.Tables[0].Rows[0]["USER_PROGRAM"].ToString()
+                };
+
+                this.DialogResult = DialogResult.OK;
                 this.Close();
+            }
         }
 
         private void UiBtn_Enter_Click(object sender, EventArgs e)

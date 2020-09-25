@@ -19,6 +19,8 @@ namespace ProgramManager
     {
         #region " Variables "
 
+        private User _User = null;
+
         private List<ProgramData> _ProgramList = null;
 
         private BackgroundWorker _MainWorker = null;
@@ -27,16 +29,15 @@ namespace ProgramManager
 
         private Point _CurrentPosition = new Point(0, 0);
 
-
         #endregion " Variables End "
 
         #region " Create & Load & Shown "
 
-        public MainForm()
+        public MainForm(User user)
         {
             InitializeComponent();
 
-            InitVariables();
+            InitVariables(user);
 
             this.Shown += MainForm_Shown;
 
@@ -51,7 +52,7 @@ namespace ProgramManager
             uiBtn_Minimization.Click += UiBtn_Minimization_Click;
             uiBtn_Close.Click += UiBtn_Close_Click;
 
-            uiBtn_Program.Click += UiBtn_Program_Click;
+            uiBtn_History.Click += UiBtn_History_Click;
             uiBtn_UserManagement.Click += UiBtn_UserManagement_Click;
             uiBtn_Config.Click += UiBtn_Config_Click;
 
@@ -65,7 +66,16 @@ namespace ProgramManager
             uiLv_Update.DoubleClick += UiLv_UpdateOrDownload_DoubleClick;
             uiLv_Download.DoubleClick += UiLv_UpdateOrDownload_DoubleClick;
 
-            uiBtn_History.Click += UiBtn_History_Click;
+            uiLv_Install.LostFocus += (s, e) => uiLv_Install.SelectedIndices.Clear();
+            uiLv_Update.LostFocus += (s, e) => uiLv_Update.SelectedIndices.Clear();
+            uiLv_Download.LostFocus += (s, e) => uiLv_Download.SelectedIndices.Clear();
+
+            
+        }
+
+        private void UiLv_Install_MouseLeave(object sender, EventArgs e)
+        {
+            uiLv_Install.BackColor = Color.Red; 
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -79,8 +89,10 @@ namespace ProgramManager
 
         #region "  Methods "
 
-        private void InitVariables()
+        private void InitVariables(User user)
         {
+            _User = user;
+
             _ProgramList = new List<ProgramData>();
 
             _MainWorker = new BackgroundWorker
@@ -108,10 +120,9 @@ namespace ProgramManager
 
         private void SetUserInfo()
         {
-            uiLab_UserID.Text = User.ID;
-            uiLab_UserName.Text = User.NAME;
-            uiLab_UserDept.Text = User.DEPT;
-            uiLab_UserType.Text = User.TYPE;
+            uiLab_UserID.Text = _User.ID;
+            uiLab_UserName.Text = _User.NAME;
+            uiLab_UserType.Text = _User.TYPE;
         }
 
         private void SetButtonDesign()
@@ -126,10 +137,10 @@ namespace ProgramManager
             uiBtn_Close.IMAGE_FOCUS = Properties.Resources.CloseButtonFocus;
             uiBtn_Close.IMAGE_CLICK = Properties.Resources.CloseButtonClick2;
 
-            // Program Button
-            uiBtn_Program.IMAGE_DEFAULT = Properties.Resources.DocumentDefault;
-            uiBtn_Program.IMAGE_FOCUS = Properties.Resources.DocumentFocus;
-            uiBtn_Program.IMAGE_CLICK = Properties.Resources.DocumentClick;
+            // History Button
+            uiBtn_History.IMAGE_DEFAULT = Properties.Resources.HistoryDefault;
+            uiBtn_History.IMAGE_FOCUS = Properties.Resources.HistoryFocus;
+            uiBtn_History.IMAGE_CLICK = Properties.Resources.HistoryClick;
 
             // UserManagement or Password Button
             uiBtn_UserManagement.IMAGE_DEFAULT = Properties.Resources.UserDefault;
@@ -185,8 +196,6 @@ namespace ProgramManager
                 uiLab_AppCurVersion.Text = string.Empty;
                 uiLab_AppNewVersion.Text = string.Empty;
 
-                uiBtn_History.Enabled = false;
-
                 uiRtb_Description.Text = string.Empty;
             }));
         }
@@ -206,7 +215,7 @@ namespace ProgramManager
 
         private void GetProgramDataList()
         {
-            _ProgramList = DatabaseProcessor.Instance.GetProgramData();
+            _ProgramList = DatabaseProcessor.Instance.GetExecutableProgramData(_User.PROGRAM);
         }
 
         private void SetProgramDataList()
@@ -317,30 +326,33 @@ namespace ProgramManager
             {
                 if (pd.INSTALLED == true)
                 {
-                    AddListViewImage(uiImageList_Install, pd.PR_ICON);
+                    AddListViewImage(uiLv_Install, uiImageList_Install, pd.PR_ICON);
                     AddListViewItem(uiLv_Install, pd.PR_NAME, uiImageList_Install.Images.Count - 1);
                     SetImageList(uiLv_Install, uiImageList_Install);
                 }
 
                 if (pd.INSTALLED == true && pd.CUR_VER != pd.NEW_VER)
                 {
-                    AddListViewImage(uiImageList_Update, pd.PR_ICON);
+                    AddListViewImage(uiLv_Update, uiImageList_Update, pd.PR_ICON);
                     AddListViewItem(uiLv_Update, pd.PR_NAME, uiImageList_Update.Images.Count - 1);
                     SetImageList(uiLv_Update, uiImageList_Update);
                 }
 
                 if (pd.INSTALLED == false)
                 {
-                    AddListViewImage(uiImageList_Download, pd.PR_ICON);
+                    AddListViewImage(uiLv_Download, uiImageList_Download, pd.PR_ICON);
                     AddListViewItem(uiLv_Download, pd.PR_NAME, uiImageList_Download.Images.Count - 1);
                     SetImageList(uiLv_Download, uiImageList_Download);
                 }
             }
         }
 
-        private void AddListViewImage(ImageList imgList, Image img)
+        private void AddListViewImage(ListView listView, ImageList imgList, Image img)
         {
-            imgList.Images.Add(img);
+            listView.Invoke(new MethodInvoker(delegate ()
+            {
+                imgList.Images.Add(img);
+            }));
         }
 
         private void AddListViewItem(ListView listView, string programName, int idx)
@@ -449,42 +461,39 @@ namespace ProgramManager
                 return;
 
             ProgramData pd = appInfo[0] as ProgramData;
-            uiLab_AppCurVersion.Text = pd.CUR_VER;
-            uiLab_AppNewVersion.Text = $"(New Version {appInfo[0].NEW_VER})";
-
+            
             string descFullPath;
             string descFile = FileManager.GetValueString("ETC", "DESCRIPTION_FILE", "");
 
             if (listView == uiLv_Install)
             {
+                uiLab_AppCurVersion.Text = pd.CUR_VER;
+
                 string localPath = GetLocalPath();
                 descFullPath = $@"{localPath}{programName}\{descFile}";
             }
             else
             {
-                string ftpFullPath = $@"{pd.PR_PATH}/{pd.NEW_VER}/{descFile}";
-                descFullPath = GetFTPDescription(ftpFullPath, programName, descFile);
-            }
+                uiLab_AppCurVersion.Text = pd.NEW_VER;
 
-            try
-            {
-                //if (File.Exists(descFullPath) == true)
-                //    uiRtb_Description.LoadFile(descFullPath, RichTextBoxStreamType.RichText);
-                //else
-                //    uiRtb_Description.Clear();
+                string ftpFullPath = $@"{pd.PR_PATH}/{pd.NEW_VER}/{descFile}";
+                descFullPath = GetFTPDescription(ftpFullPath, descFile);
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            
+            uiLab_AppNewVersion.Text = $"(New Version {appInfo[0].NEW_VER})";
+
+            if (File.Exists(descFullPath) == true)
+                uiRtb_Description.LoadFile(descFullPath, RichTextBoxStreamType.PlainText);
+            else
+                uiRtb_Description.Clear();
 
             ShowNewVersionInfo(newVersionFlag);
         }
 
-        private string GetFTPDescription(string ftpFullPath, string programName, string descFile)
+        private string GetFTPDescription(string ftpFullPath, string descFile)
         {
-            string dummyPath = $@"{GetLocalPath()}{programName}";
-            string dummyFile = $@"{dummyPath}\{descFile}";
+            string dummyPath = Path.Combine(Application.StartupPath, @"dummy\");
+            string dummyFile = $@"{dummyPath}{descFile}";
 
             FTPManager.Instance.DownLoad(dummyFile, ftpFullPath);
          
@@ -494,11 +503,6 @@ namespace ProgramManager
         private void ShowNewVersionInfo(bool flag)
         {
             uiLab_AppNewVersion.Visible = flag;
-        }
-
-        private void EnableControl(Control ctl, bool flag)
-        {
-            ctl.Enabled = flag;
         }
 
         #endregion "  Methods End "
@@ -572,27 +576,44 @@ namespace ProgramManager
                 this.Close();
             }
         }
-        private void UiBtn_Program_Click(object sender, EventArgs e)
+
+        private void UiBtn_History_Click(object sender, EventArgs e)
         {
-            ProgramForm frm = new ProgramForm();
+            if (uiLv_Install.SelectedItems.Count == 0)
+            {
+                string msg = "Selected item in installed app does not exist.";
+                MessageBox.Show(msg, "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            ProgramHistoryForm frm = new ProgramHistoryForm()
+            {
+                _ProgramName = uiLab_AppName.Text
+            };
             frm.ShowDialog();
+
+            _RefreshWorker.RunWorkerAsync();
         }
 
         private void UiBtn_UserManagement_Click(object sender, EventArgs e)
         {
-            UserManagementForm frm = new UserManagementForm();
-            frm.ShowDialog();
+            if (_User.TYPE == "Administrator")
+            {
+                UserManagementForm frm = new UserManagementForm();
+                frm.ShowDialog();
+            }
+            else
+            {
+                ChangePasswordForm frm = new ChangePasswordForm(_User);
+                frm.ShowDialog();
+
+                _User = frm._User;
+            }
         }
 
         private void UiBtn_Config_Click(object sender, EventArgs e)
         {
             ConfigForm frm = new ConfigForm();
-            frm.ShowDialog();
-        }
-
-        private void UiBtn_History_Click(object sender, EventArgs e)
-        {
-            ProgramHistoryForm frm = new ProgramHistoryForm();
             frm.ShowDialog();
         }
 
@@ -612,7 +633,7 @@ namespace ProgramManager
 
                 menu.Items.Add(item01);
 
-                if (User.TYPE == "Administrator")
+                if (_User.TYPE == "Administrator")
                     menu.Items.Add(item02);
 
                 menu.Show(MousePosition);
@@ -625,7 +646,7 @@ namespace ProgramManager
                 return;
 
             string programName = uiLv_Install.SelectedItems[0].Text;
-            string msg = $"[{programName}] Do you want to delete program ?";
+            string msg = $"[{programName}]\nDo you want to delete program ?";
 
             if (MessageBox.Show(msg, "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
                 return;
@@ -656,7 +677,6 @@ namespace ProgramManager
                 return;
 
             SetAppInfo(listView, true);
-            EnableControl(uiBtn_History, true);
         }
 
         private void UiLv_Update_Click(object sender, EventArgs e)
@@ -667,7 +687,6 @@ namespace ProgramManager
                 return;
 
             SetAppInfo(listView, true);
-            EnableControl(uiBtn_History, false);
         }
 
         private void UiLv_Download_Click(object sender, EventArgs e)
@@ -678,8 +697,6 @@ namespace ProgramManager
                 return;
 
             SetAppInfo(listView, false);
-
-            EnableControl(uiBtn_History, false);
         }
 
         private void UiLv_Install_DoubleClick(object sender, EventArgs e)
@@ -713,7 +730,7 @@ namespace ProgramManager
             string linkFile = GetLinkFile(exeFile);
 
             // 링크경로로 프로그램 실행
-            Process.Start(linkFile, User.ID);
+            Process.Start(linkFile, _User.ID);
 
             this.Cursor = Cursors.Default;
         }
@@ -747,12 +764,12 @@ namespace ProgramManager
             {
                 _RefreshWorker.RunWorkerAsync();
 
-                msg = $"[{pd.PR_NAME} ({pd.NEW_VER})] Success to {command}";
+                msg = $"[{pd.PR_NAME} ({pd.NEW_VER})]\nSuccess to {command}";
                 MessageBox.Show(msg, "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             else
             {
-                msg = $"[{pd.PR_NAME} ({pd.NEW_VER})] Failed to {command}";
+                msg = $"[{pd.PR_NAME} ({pd.NEW_VER})]\nFailed to {command}";
                 MessageBox.Show(msg, "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }

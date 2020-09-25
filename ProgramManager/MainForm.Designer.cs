@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.uiTlp_Main = new System.Windows.Forms.TableLayoutPanel();
             this.uiPnl_AppInfo = new System.Windows.Forms.Panel();
             this.uiPnl_Description = new System.Windows.Forms.Panel();
@@ -45,8 +46,6 @@
             this.uiLab_Title = new System.Windows.Forms.Label();
             this.uiLab_Version = new System.Windows.Forms.Label();
             this.uiPnl_Option = new System.Windows.Forms.Panel();
-            this.uiLab_Dept = new System.Windows.Forms.Label();
-            this.uiLab_UserDept = new System.Windows.Forms.Label();
             this.uiLab_Type = new System.Windows.Forms.Label();
             this.uiLab_Name = new System.Windows.Forms.Label();
             this.uiLab_ID = new System.Windows.Forms.Label();
@@ -69,12 +68,11 @@
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.uiBtn_History = new ProgramManager.Controls.ImageButton();
             this.uiBtn_Close = new ProgramManager.Controls.ImageButton();
             this.uiBtn_Minimization = new ProgramManager.Controls.ImageButton();
+            this.uiBtn_History = new ProgramManager.Controls.ImageButton();
             this.uiBtn_Config = new ProgramManager.Controls.ImageButton();
             this.uiBtn_UserManagement = new ProgramManager.Controls.ImageButton();
-            this.uiBtn_Program = new ProgramManager.Controls.ImageButton();
             this.uiTlp_Main.SuspendLayout();
             this.uiPnl_AppInfo.SuspendLayout();
             this.uiPnl_Description.SuspendLayout();
@@ -109,7 +107,7 @@
             this.uiTlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.uiTlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.uiTlp_Main.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.uiTlp_Main.Size = new System.Drawing.Size(977, 663);
+            this.uiTlp_Main.Size = new System.Drawing.Size(855, 663);
             this.uiTlp_Main.TabIndex = 0;
             // 
             // uiPnl_AppInfo
@@ -120,23 +118,22 @@
             this.uiPnl_AppInfo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.uiPnl_AppInfo.Controls.Add(this.uiPnl_Description);
             this.uiPnl_AppInfo.Controls.Add(this.uiPnl_AppName);
-            this.uiPnl_AppInfo.Location = new System.Drawing.Point(3, 379);
+            this.uiPnl_AppInfo.Location = new System.Drawing.Point(0, 376);
+            this.uiPnl_AppInfo.Margin = new System.Windows.Forms.Padding(0);
             this.uiPnl_AppInfo.Name = "uiPnl_AppInfo";
-            this.uiPnl_AppInfo.Size = new System.Drawing.Size(971, 281);
+            this.uiPnl_AppInfo.Size = new System.Drawing.Size(855, 287);
             this.uiPnl_AppInfo.TabIndex = 3;
             // 
             // uiPnl_Description
             // 
-            this.uiPnl_Description.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.uiPnl_Description.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.uiPnl_Description.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.uiPnl_Description.Controls.Add(this.panel1);
             this.uiPnl_Description.Controls.Add(this.label13);
             this.uiPnl_Description.Controls.Add(this.pictureBox5);
-            this.uiPnl_Description.Location = new System.Drawing.Point(-1, 57);
+            this.uiPnl_Description.Location = new System.Drawing.Point(0, 57);
             this.uiPnl_Description.Name = "uiPnl_Description";
-            this.uiPnl_Description.Size = new System.Drawing.Size(973, 224);
+            this.uiPnl_Description.Size = new System.Drawing.Size(978, 224);
             this.uiPnl_Description.TabIndex = 8;
             // 
             // panel1
@@ -145,17 +142,17 @@
             this.panel1.Controls.Add(this.uiRtb_Description);
             this.panel1.Location = new System.Drawing.Point(1, 41);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(974, 184);
+            this.panel1.Size = new System.Drawing.Size(976, 184);
             this.panel1.TabIndex = 10;
             // 
             // uiRtb_Description
             // 
             this.uiRtb_Description.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.uiRtb_Description.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.uiRtb_Description.Location = new System.Drawing.Point(19, 19);
+            this.uiRtb_Description.Location = new System.Drawing.Point(19, 17);
             this.uiRtb_Description.Name = "uiRtb_Description";
             this.uiRtb_Description.ReadOnly = true;
-            this.uiRtb_Description.Size = new System.Drawing.Size(935, 162);
+            this.uiRtb_Description.Size = new System.Drawing.Size(935, 170);
             this.uiRtb_Description.TabIndex = 11;
             this.uiRtb_Description.Text = "";
             // 
@@ -172,11 +169,8 @@
             // 
             // uiPnl_AppName
             // 
-            this.uiPnl_AppName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.uiPnl_AppName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.uiPnl_AppName.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.uiPnl_AppName.Controls.Add(this.uiBtn_History);
             this.uiPnl_AppName.Controls.Add(this.uiLab_AppNewVersion);
             this.uiPnl_AppName.Controls.Add(this.uiLab_AppCurVersion);
             this.uiPnl_AppName.Controls.Add(this.uiLab_AppName);
@@ -184,14 +178,16 @@
             this.uiPnl_AppName.Controls.Add(this.pictureBox4);
             this.uiPnl_AppName.Controls.Add(this.label8);
             this.uiPnl_AppName.Controls.Add(this.pictureBox3);
-            this.uiPnl_AppName.Location = new System.Drawing.Point(-1, -1);
+            this.uiPnl_AppName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.uiPnl_AppName.Location = new System.Drawing.Point(0, 0);
             this.uiPnl_AppName.Name = "uiPnl_AppName";
-            this.uiPnl_AppName.Size = new System.Drawing.Size(973, 58);
+            this.uiPnl_AppName.Size = new System.Drawing.Size(855, 287);
             this.uiPnl_AppName.TabIndex = 0;
             // 
             // uiLab_AppNewVersion
             // 
             this.uiLab_AppNewVersion.AutoSize = true;
+            this.uiLab_AppNewVersion.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(225)))), ((int)(((byte)(225)))), ((int)(((byte)(225)))));
             this.uiLab_AppNewVersion.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.uiLab_AppNewVersion.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(165)))), ((int)(((byte)(165)))), ((int)(((byte)(165)))));
             this.uiLab_AppNewVersion.Location = new System.Drawing.Point(163, 41);
@@ -251,7 +247,7 @@
             this.uiPnl_Title.Location = new System.Drawing.Point(1, 1);
             this.uiPnl_Title.Margin = new System.Windows.Forms.Padding(1);
             this.uiPnl_Title.Name = "uiPnl_Title";
-            this.uiPnl_Title.Size = new System.Drawing.Size(975, 38);
+            this.uiPnl_Title.Size = new System.Drawing.Size(853, 38);
             this.uiPnl_Title.TabIndex = 0;
             // 
             // uiLab_Title
@@ -279,11 +275,9 @@
             // uiPnl_Option
             // 
             this.uiPnl_Option.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+            this.uiPnl_Option.Controls.Add(this.uiBtn_History);
             this.uiPnl_Option.Controls.Add(this.uiBtn_Config);
             this.uiPnl_Option.Controls.Add(this.uiBtn_UserManagement);
-            this.uiPnl_Option.Controls.Add(this.uiBtn_Program);
-            this.uiPnl_Option.Controls.Add(this.uiLab_Dept);
-            this.uiPnl_Option.Controls.Add(this.uiLab_UserDept);
             this.uiPnl_Option.Controls.Add(this.uiLab_Type);
             this.uiPnl_Option.Controls.Add(this.uiLab_Name);
             this.uiPnl_Option.Controls.Add(this.uiLab_ID);
@@ -294,32 +288,8 @@
             this.uiPnl_Option.Location = new System.Drawing.Point(1, 41);
             this.uiPnl_Option.Margin = new System.Windows.Forms.Padding(1);
             this.uiPnl_Option.Name = "uiPnl_Option";
-            this.uiPnl_Option.Size = new System.Drawing.Size(975, 48);
+            this.uiPnl_Option.Size = new System.Drawing.Size(853, 48);
             this.uiPnl_Option.TabIndex = 1;
-            // 
-            // uiLab_Dept
-            // 
-            this.uiLab_Dept.AutoSize = true;
-            this.uiLab_Dept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.uiLab_Dept.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.uiLab_Dept.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            this.uiLab_Dept.Location = new System.Drawing.Point(281, 19);
-            this.uiLab_Dept.Name = "uiLab_Dept";
-            this.uiLab_Dept.Size = new System.Drawing.Size(44, 12);
-            this.uiLab_Dept.TabIndex = 18;
-            this.uiLab_Dept.Text = "Dept :";
-            // 
-            // uiLab_UserDept
-            // 
-            this.uiLab_UserDept.AutoSize = true;
-            this.uiLab_UserDept.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-            this.uiLab_UserDept.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.uiLab_UserDept.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.uiLab_UserDept.Location = new System.Drawing.Point(328, 19);
-            this.uiLab_UserDept.Name = "uiLab_UserDept";
-            this.uiLab_UserDept.Size = new System.Drawing.Size(41, 12);
-            this.uiLab_UserDept.TabIndex = 17;
-            this.uiLab_UserDept.Text = "DEPT";
             // 
             // uiLab_Type
             // 
@@ -327,7 +297,7 @@
             this.uiLab_Type.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.uiLab_Type.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.uiLab_Type.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(150)))), ((int)(((byte)(150)))), ((int)(((byte)(150)))));
-            this.uiLab_Type.Location = new System.Drawing.Point(427, 19);
+            this.uiLab_Type.Location = new System.Drawing.Point(280, 19);
             this.uiLab_Type.Name = "uiLab_Type";
             this.uiLab_Type.Size = new System.Drawing.Size(48, 12);
             this.uiLab_Type.TabIndex = 16;
@@ -363,7 +333,7 @@
             this.uiLab_UserType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.uiLab_UserType.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.uiLab_UserType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(230)))), ((int)(((byte)(230)))), ((int)(((byte)(230)))));
-            this.uiLab_UserType.Location = new System.Drawing.Point(479, 19);
+            this.uiLab_UserType.Location = new System.Drawing.Point(332, 19);
             this.uiLab_UserType.Name = "uiLab_UserType";
             this.uiLab_UserType.Size = new System.Drawing.Size(38, 12);
             this.uiLab_UserType.TabIndex = 12;
@@ -409,7 +379,7 @@
             this.uiTlp_App.RowCount = 1;
             this.uiTlp_App.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.uiTlp_App.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.uiTlp_App.Size = new System.Drawing.Size(975, 284);
+            this.uiTlp_App.Size = new System.Drawing.Size(853, 284);
             this.uiTlp_App.TabIndex = 2;
             // 
             // uiPnl_Installed
@@ -421,7 +391,7 @@
             this.uiPnl_Installed.Location = new System.Drawing.Point(1, 1);
             this.uiPnl_Installed.Margin = new System.Windows.Forms.Padding(1);
             this.uiPnl_Installed.Name = "uiPnl_Installed";
-            this.uiPnl_Installed.Size = new System.Drawing.Size(323, 282);
+            this.uiPnl_Installed.Size = new System.Drawing.Size(282, 282);
             this.uiPnl_Installed.TabIndex = 0;
             // 
             // uiLv_Install
@@ -432,7 +402,7 @@
             this.uiLv_Install.HideSelection = false;
             this.uiLv_Install.Location = new System.Drawing.Point(0, 37);
             this.uiLv_Install.Name = "uiLv_Install";
-            this.uiLv_Install.Size = new System.Drawing.Size(323, 245);
+            this.uiLv_Install.Size = new System.Drawing.Size(282, 245);
             this.uiLv_Install.TabIndex = 1;
             this.uiLv_Install.UseCompatibleStateImageBehavior = false;
             // 
@@ -443,7 +413,7 @@
             this.uiLab_Install.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.uiLab_Install.Location = new System.Drawing.Point(0, 0);
             this.uiLab_Install.Name = "uiLab_Install";
-            this.uiLab_Install.Size = new System.Drawing.Size(323, 37);
+            this.uiLab_Install.Size = new System.Drawing.Size(282, 37);
             this.uiLab_Install.TabIndex = 0;
             this.uiLab_Install.Text = "Installed App";
             this.uiLab_Install.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -454,10 +424,10 @@
             this.uiPnl_Update.Controls.Add(this.uiLv_Update);
             this.uiPnl_Update.Controls.Add(this.uiLab_Update);
             this.uiPnl_Update.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnl_Update.Location = new System.Drawing.Point(326, 1);
+            this.uiPnl_Update.Location = new System.Drawing.Point(285, 1);
             this.uiPnl_Update.Margin = new System.Windows.Forms.Padding(1);
             this.uiPnl_Update.Name = "uiPnl_Update";
-            this.uiPnl_Update.Size = new System.Drawing.Size(323, 282);
+            this.uiPnl_Update.Size = new System.Drawing.Size(282, 282);
             this.uiPnl_Update.TabIndex = 1;
             // 
             // uiLv_Update
@@ -468,7 +438,7 @@
             this.uiLv_Update.HideSelection = false;
             this.uiLv_Update.Location = new System.Drawing.Point(0, 37);
             this.uiLv_Update.Name = "uiLv_Update";
-            this.uiLv_Update.Size = new System.Drawing.Size(323, 245);
+            this.uiLv_Update.Size = new System.Drawing.Size(282, 245);
             this.uiLv_Update.TabIndex = 2;
             this.uiLv_Update.UseCompatibleStateImageBehavior = false;
             // 
@@ -479,7 +449,7 @@
             this.uiLab_Update.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.uiLab_Update.Location = new System.Drawing.Point(0, 0);
             this.uiLab_Update.Name = "uiLab_Update";
-            this.uiLab_Update.Size = new System.Drawing.Size(323, 37);
+            this.uiLab_Update.Size = new System.Drawing.Size(282, 37);
             this.uiLab_Update.TabIndex = 1;
             this.uiLab_Update.Text = "App To Update";
             this.uiLab_Update.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -490,10 +460,10 @@
             this.uiPnl_Download.Controls.Add(this.uiLv_Download);
             this.uiPnl_Download.Controls.Add(this.uiLab_Download);
             this.uiPnl_Download.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.uiPnl_Download.Location = new System.Drawing.Point(651, 1);
+            this.uiPnl_Download.Location = new System.Drawing.Point(569, 1);
             this.uiPnl_Download.Margin = new System.Windows.Forms.Padding(1);
             this.uiPnl_Download.Name = "uiPnl_Download";
-            this.uiPnl_Download.Size = new System.Drawing.Size(323, 282);
+            this.uiPnl_Download.Size = new System.Drawing.Size(283, 282);
             this.uiPnl_Download.TabIndex = 2;
             // 
             // uiLv_Download
@@ -504,7 +474,7 @@
             this.uiLv_Download.HideSelection = false;
             this.uiLv_Download.Location = new System.Drawing.Point(0, 37);
             this.uiLv_Download.Name = "uiLv_Download";
-            this.uiLv_Download.Size = new System.Drawing.Size(323, 245);
+            this.uiLv_Download.Size = new System.Drawing.Size(283, 245);
             this.uiLv_Download.TabIndex = 3;
             this.uiLv_Download.UseCompatibleStateImageBehavior = false;
             // 
@@ -515,7 +485,7 @@
             this.uiLab_Download.Font = new System.Drawing.Font("굴림", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.uiLab_Download.Location = new System.Drawing.Point(0, 0);
             this.uiLab_Download.Name = "uiLab_Download";
-            this.uiLab_Download.Size = new System.Drawing.Size(323, 37);
+            this.uiLab_Download.Size = new System.Drawing.Size(283, 37);
             this.uiLab_Download.TabIndex = 2;
             this.uiLab_Download.Text = "Not Installed App";
             this.uiLab_Download.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -568,21 +538,12 @@
             this.pictureBox3.TabIndex = 0;
             this.pictureBox3.TabStop = false;
             // 
-            // uiBtn_History
-            // 
-            this.uiBtn_History.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBtn_History.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.uiBtn_History.Location = new System.Drawing.Point(916, 0);
-            this.uiBtn_History.Name = "uiBtn_History";
-            this.uiBtn_History.Size = new System.Drawing.Size(58, 58);
-            this.uiBtn_History.TabIndex = 9;
-            // 
             // uiBtn_Close
             // 
             this.uiBtn_Close.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBtn_Close.BackgroundImage = global::ProgramManager.Properties.Resources.CloseButtonDefault;
             this.uiBtn_Close.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_Close.Location = new System.Drawing.Point(927, 0);
+            this.uiBtn_Close.Location = new System.Drawing.Point(805, 0);
             this.uiBtn_Close.Name = "uiBtn_Close";
             this.uiBtn_Close.Size = new System.Drawing.Size(48, 38);
             this.uiBtn_Close.TabIndex = 12;
@@ -592,10 +553,20 @@
             this.uiBtn_Minimization.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.uiBtn_Minimization.BackgroundImage = global::ProgramManager.Properties.Resources.MinimizationButtonDefault;
             this.uiBtn_Minimization.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_Minimization.Location = new System.Drawing.Point(880, 0);
+            this.uiBtn_Minimization.Location = new System.Drawing.Point(758, 0);
             this.uiBtn_Minimization.Name = "uiBtn_Minimization";
             this.uiBtn_Minimization.Size = new System.Drawing.Size(48, 38);
             this.uiBtn_Minimization.TabIndex = 11;
+            // 
+            // uiBtn_History
+            // 
+            this.uiBtn_History.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.uiBtn_History.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("uiBtn_History.BackgroundImage")));
+            this.uiBtn_History.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.uiBtn_History.Location = new System.Drawing.Point(711, 0);
+            this.uiBtn_History.Name = "uiBtn_History";
+            this.uiBtn_History.Size = new System.Drawing.Size(48, 48);
+            this.uiBtn_History.TabIndex = 9;
             // 
             // uiBtn_Config
             // 
@@ -603,7 +574,7 @@
             this.uiBtn_Config.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.uiBtn_Config.BackgroundImage = global::ProgramManager.Properties.Resources.ConfigDefault;
             this.uiBtn_Config.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_Config.Location = new System.Drawing.Point(927, 0);
+            this.uiBtn_Config.Location = new System.Drawing.Point(805, 0);
             this.uiBtn_Config.Name = "uiBtn_Config";
             this.uiBtn_Config.Size = new System.Drawing.Size(48, 48);
             this.uiBtn_Config.TabIndex = 24;
@@ -614,25 +585,15 @@
             this.uiBtn_UserManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
             this.uiBtn_UserManagement.BackgroundImage = global::ProgramManager.Properties.Resources.UserDefault;
             this.uiBtn_UserManagement.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_UserManagement.Location = new System.Drawing.Point(880, 0);
+            this.uiBtn_UserManagement.Location = new System.Drawing.Point(758, 0);
             this.uiBtn_UserManagement.Name = "uiBtn_UserManagement";
             this.uiBtn_UserManagement.Size = new System.Drawing.Size(48, 48);
             this.uiBtn_UserManagement.TabIndex = 23;
             // 
-            // uiBtn_Program
-            // 
-            this.uiBtn_Program.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.uiBtn_Program.BackgroundImage = global::ProgramManager.Properties.Resources.DocumentDefault;
-            this.uiBtn_Program.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.uiBtn_Program.Location = new System.Drawing.Point(833, 0);
-            this.uiBtn_Program.Name = "uiBtn_Program";
-            this.uiBtn_Program.Size = new System.Drawing.Size(48, 48);
-            this.uiBtn_Program.TabIndex = 22;
-            // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.ClientSize = new System.Drawing.Size(977, 663);
+            this.ClientSize = new System.Drawing.Size(855, 663);
             this.Controls.Add(this.uiTlp_Main);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "MainForm";
@@ -673,8 +634,6 @@
         private System.Windows.Forms.Label uiLab_UserType;
         private System.Windows.Forms.Label uiLab_UserName;
         private System.Windows.Forms.Label uiLab_UserID;
-        private System.Windows.Forms.Label uiLab_Dept;
-        private System.Windows.Forms.Label uiLab_UserDept;
         private System.Windows.Forms.TableLayoutPanel uiTlp_App;
         private System.Windows.Forms.Panel uiPnl_Installed;
         private System.Windows.Forms.Label uiLab_Install;
@@ -683,7 +642,22 @@
         private System.Windows.Forms.Panel uiPnl_Download;
         private System.Windows.Forms.Label uiLab_Download;
         private System.Windows.Forms.Panel uiPnl_AppInfo;
+        private Controls.ImageButton uiBtn_UserManagement;
+        private Controls.ImageButton uiBtn_Config;
+        private Controls.ImageButton uiBtn_Minimization;
+        private Controls.ImageButton uiBtn_Close;
+        private System.Windows.Forms.ListView uiLv_Install;
+        private System.Windows.Forms.ListView uiLv_Download;
+        private System.Windows.Forms.Panel uiPnl_Description;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.RichTextBox uiRtb_Description;
+        private System.Windows.Forms.ImageList uiImageList_Install;
+        private System.Windows.Forms.ImageList uiImageList_Update;
+        private System.Windows.Forms.ImageList uiImageList_Download;
         private System.Windows.Forms.Panel uiPnl_AppName;
+        private Controls.ImageButton uiBtn_History;
         private System.Windows.Forms.Label uiLab_AppNewVersion;
         private System.Windows.Forms.Label uiLab_AppCurVersion;
         private System.Windows.Forms.Label uiLab_AppName;
@@ -691,23 +665,7 @@
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private Controls.ImageButton uiBtn_UserManagement;
-        private Controls.ImageButton uiBtn_Program;
-        private Controls.ImageButton uiBtn_Config;
-        private Controls.ImageButton uiBtn_Minimization;
-        private Controls.ImageButton uiBtn_Close;
-        private System.Windows.Forms.ListView uiLv_Install;
         private System.Windows.Forms.ListView uiLv_Update;
-        private System.Windows.Forms.ListView uiLv_Download;
-        private System.Windows.Forms.Panel uiPnl_Description;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private Controls.ImageButton uiBtn_History;
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.RichTextBox uiRtb_Description;
-        private System.Windows.Forms.ImageList uiImageList_Install;
-        private System.Windows.Forms.ImageList uiImageList_Update;
-        private System.Windows.Forms.ImageList uiImageList_Download;
     }
 }
 

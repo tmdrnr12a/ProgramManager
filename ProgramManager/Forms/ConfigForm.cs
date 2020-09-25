@@ -29,6 +29,8 @@ namespace ProgramManager.Forms
         private void ConfigForm_Shown(object sender, EventArgs e)
         {
             LoadValue();
+
+            uiTxt_DB_IP.Select();
         }
 
         #endregion Create & Load & Shown End

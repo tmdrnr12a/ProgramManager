@@ -7,14 +7,12 @@ using System.Threading.Tasks;
 
 namespace ProgramManager.Models
 {
-    class User
+    public class User
     {
-        public static string SEQ = string.Empty;
-        public static string ID = string.Empty;
-        public static string PWD = string.Empty;
-        public static string NAME = string.Empty;
-        public static string TYPE = string.Empty;
-        public static string DEPT = string.Empty;
-        public static string PROGRAM = string.Empty;
+        public string ID = string.Empty;
+        public string PWD = string.Empty;
+        public string NAME = string.Empty;
+        public string TYPE = string.Empty;
+        public string PROGRAM = string.Empty;
     }
 }

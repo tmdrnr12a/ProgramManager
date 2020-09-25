@@ -2,6 +2,7 @@
 using ProgramManager.Managers;
 using System;
 using System.Diagnostics;
+using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 
 namespace ProgramManager
@@ -31,15 +32,12 @@ namespace ProgramManager
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm());
 
-            Application.Run(new ProgramForm());
-            return;
-
-
-
-            MainForm frm = new MainForm();
-            frm.ShowDialog();
+            LoginForm frm = new LoginForm();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new MainForm(frm._User));
+            }
         }
 
         private static void Application_ThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)

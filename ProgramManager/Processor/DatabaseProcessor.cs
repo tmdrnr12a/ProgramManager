@@ -1,4 +1,5 @@
-﻿using ProgramManager.Etc;
+﻿using FarPoint.Win.Spread;
+using ProgramManager.Etc;
 using ProgramManager.Manager;
 using ProgramManager.Managers;
 using ProgramManager.Models;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace ProgramManager.Processor
@@ -23,11 +25,8 @@ namespace ProgramManager.Processor
 
         #region "  Methods "
 
-        public bool Login(string id, string pwd)
+        public DataSet LoginInfo(string id, string pwd)
         {
-            bool result = true;
-
-            // 유저 정보 조회
             string query = @"
 SELECT
     USER_SEQ,
@@ -35,9 +34,8 @@ SELECT
     USER_PWD, 
     USER_NAME, 
     USER_TYPE, 
-    USER_DEPT, 
     USER_PROGRAM
-FROM PM_USER_INFO
+FROM PSK_DB.PM_USER_INFO
 WHERE 1=1
 AND USER_ID = '#USER_ID'
 AND USER_PWD = '#USER_PWD'
@@ -51,6 +49,16 @@ AND USER_PWD = '#USER_PWD'
             try
             {
                 MysqlManager.Instance.ExecuteDsQuery(ds, query);
+
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                {
+
+                }
+                else
+                {
+                    ds = null;
+                    MessageBox.Show("Please Check ID and Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
@@ -58,26 +66,10 @@ AND USER_PWD = '#USER_PWD'
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
-            {
-                User.SEQ = ds.Tables[0].Rows[0]["USER_SEQ"].ToString();
-                User.ID = ds.Tables[0].Rows[0]["USER_ID"].ToString();
-                User.PWD = ds.Tables[0].Rows[0]["USER_PWD"].ToString();
-                User.TYPE = ds.Tables[0].Rows[0]["USER_TYPE"].ToString();
-                User.NAME = ds.Tables[0].Rows[0]["USER_NAME"].ToString();
-                User.DEPT = ds.Tables[0].Rows[0]["USER_DEPT"].ToString();
-                User.PROGRAM = ds.Tables[0].Rows[0]["USER_PROGRAM"].ToString();
-            }
-            else
-            {
-                result = false;
-                MessageBox.Show("Please Check ID and Password", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-            return result;
+            return ds;
         }
 
-        public List<ProgramData> GetProgramData()
+        public List<ProgramData> GetExecutableProgramData(string userProgram)
         {
             List<ProgramData> _ProgramList = new List<ProgramData>();
 
@@ -86,14 +78,14 @@ AND USER_PWD = '#USER_PWD'
 SELECT PR_ID, PR_NAME, PR_ICON, PR_PATH, PR_FILE
 FROM PSK_DB.PM_PROGRAM_INFO
 WHERE 1=1
-/*PRID AND PR_ID IN (#PRID) PPID*/
+/*PR_ID AND PR_ID IN (#PR_ID) PR_ID*/
 ORDER BY PR_NAME ASC
 ";
-            if (User.PROGRAM != "ALL")
+            if (userProgram != "ALL")
             {
-                query = query.Replace("/*PRID ", "");
-                query = query.Replace(" PRID*/", "");
-                query = query.Replace("#PRID", $"'{User.PROGRAM.Replace(",", "','")}'");
+                query = query.Replace("/*PR_ID ", "");
+                query = query.Replace(" PR_ID*/", "");
+                query = query.Replace("#PR_ID", $"'{userProgram.Replace(",", "','")}'");
             }
 
             DataSet ds = new DataSet();
@@ -118,7 +110,6 @@ ORDER BY PR_NAME ASC
                         PR_NAME = ds.Tables[0].Rows[i]["PR_NAME"].ToString(),
                         PR_PATH = ds.Tables[0].Rows[i]["PR_PATH"].ToString(),
                         PR_FILE = ds.Tables[0].Rows[i]["PR_FILE"].ToString(),
-
                     };
 
                     try
@@ -154,9 +145,9 @@ ORDER BY PR_NAME ASC
             return _ProgramList;
         }
 
-        public bool UpdatePassword(string pwd, string id)
+        public string UpdatePassword(string curPwd, string changePwd, string id)
         {
-            bool result = false;
+            string password = curPwd;
 
             string query =
 @"
@@ -166,7 +157,7 @@ SET
 WHERE 1=1
 AND USER_ID = '#USER_ID'
 ";
-            query = query.Replace("#USER_PWD", pwd);
+            query = query.Replace("#USER_PWD", changePwd);
             query = query.Replace("#USER_ID", id);
 
             try
@@ -174,14 +165,12 @@ AND USER_ID = '#USER_ID'
                 int row = MysqlManager.Instance.ExecuteNonQuery(query);
                 if (row == 1)
                 {
-                    result = true;
-
-                    User.PWD = pwd;
+                    password = changePwd;
                     MessageBox.Show("Change complete.", "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
-                    result = false;
+                    password = curPwd;
                     MessageBox.Show("Failed to change password", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
@@ -190,19 +179,46 @@ AND USER_ID = '#USER_ID'
                 MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            return result;
+            return password;
         }
 
-        public DataSet GetAllProgramData()
+        public DataSet GetUserData()
+        {
+            string query =
+@"
+SELECT
+    USER_SEQ,
+    USER_ID, 
+    USER_PWD, 
+    USER_NAME, 
+    USER_TYPE, 
+    USER_PROGRAM
+FROM PM_USER_INFO
+ORDER BY USER_TYPE
+";
+            DataSet ds = new DataSet();
+
+            try
+            {
+                MysqlManager.Instance.ExecuteDsQuery(ds, query);
+            }
+            catch (Exception ex)
+            {
+                ds = null;
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return ds;
+        }
+
+        public DataSet GetProgramData()
         {
             string query =
 @"
 SELECT 
-    PR_ID AS ID, 
-    PR_NAME AS NAME, 
-    PR_ICON AS ICON, 
-    PR_PATH AS PATH, 
-    PR_FILE AS FILE
+    PR_ID, 
+    PR_ICON,    
+    PR_NAME
 FROM PSK_DB.PM_PROGRAM_INFO
 ORDER BY PR_NAME ASC
 ";
@@ -219,6 +235,133 @@ ORDER BY PR_NAME ASC
             }
 
             return ds;
+        }
+
+        public void DeleteAllUser(string updateTime)
+        {
+            string query =
+@"
+DELETE FROM PSK_DB.PM_USER_INFO
+WHERE UPDATE_TIME < '#UPDATE_TIME'
+";
+            query = query.Replace("#UPDATE_TIME", updateTime);
+
+            try
+            {
+                int row = MysqlManager.Instance.ExecuteNonQuery(query);
+
+                if (row > 0)
+                    MessageBox.Show("Saved complete.", "Inform", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public bool DeleteTargetUser(string seq)
+        {
+            string query =
+@"
+DELETE FROM PSK_DB.PM_USER_INFO
+WHERE USER_SEQ = '#USER_SEQ'
+";
+            query = query.Replace("#USER_SEQ", seq);
+
+            int row = 0;
+
+            try
+            {
+                row = MysqlManager.Instance.ExecuteNonQuery(query);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return (row >= 1);
+        }
+
+        public string GetCurrentTime()
+        {
+            string updateTime = DateTime.Now.ToString();
+
+            string query =
+@"
+SELECT DATE_FORMAT(NOW(), '%Y-%m-%d %H:%i:%s')
+";
+            DataSet ds = new DataSet();
+
+            try
+            {
+                MysqlManager.Instance.ExecuteDsQuery(ds, query);
+
+                if (ds != null && ds.Tables.Count > 0 && ds.Tables[0].Rows.Count > 0)
+                    updateTime = ds.Tables[0].Rows[0][0].ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return updateTime;
+        }
+
+        public bool InsertUserData(List<User> users, string updateTime)
+        {
+            string headerQuery =
+@"
+INSERT INTO PSK_DB.PM_USER_INFO 
+    (USER_ID, USER_PWD, USER_NAME, USER_TYPE, USER_PROGRAM, UPDATE_TIME)
+VALUES 
+";
+            StringBuilder query = new StringBuilder();
+            query.Clear();
+
+            query.AppendFormat(headerQuery);
+
+            for (int i = 0; i < users.Count; i++)
+            {
+                query.AppendFormat("\t");
+                query.AppendFormat("(");
+                query.AppendFormat("'{0}', ", users[i].ID);
+                query.AppendFormat("'{0}', ", users[i].PWD);
+                query.AppendFormat("'{0}', ", users[i].NAME);
+                query.AppendFormat("'{0}', ", users[i].TYPE);
+                query.AppendFormat("'{0}',", users[i].PROGRAM);
+                query.AppendFormat("'{0}'", updateTime);
+                query.AppendFormat(")");
+
+                // 100개 단위로 입력
+                if ((i % 100 == 99) || (i == users.Count - 1))
+                {
+                    query = query.Replace("*", "");
+
+                    try
+                    {
+                        int r = MysqlManager.Instance.ExecuteNonQuery(query.ToString());
+                        if (r <= 0)
+                        {
+                            MessageBox.Show("Failed to insert data.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+
+                    query.Clear();
+                    query.AppendFormat(headerQuery);
+                }
+                else
+                {
+                    query.AppendFormat(", \n");
+                }
+            }
+
+            return true;
         }
 
         #endregion "  Methods End "
