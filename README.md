@@ -6,7 +6,7 @@
 2. User Management
     - Add/Modify/Delete user
     
-# Result (Architecture)
+# Result (UI Flow Chart)
 ![1  Architecture](https://user-images.githubusercontent.com/51582272/94281008-123fe080-ff89-11ea-9082-b77a94d6b5ae.jpg)
 # Result (Login Form)
 ![2  Login](https://user-images.githubusercontent.com/51582272/94281012-1409a400-ff89-11ea-9e6e-5c778175b286.jpg)
